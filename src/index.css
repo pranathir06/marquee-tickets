@@ -560,15 +560,23 @@ img {
   appearance: none;
   border: none;
   background: var(--brass);
-  color: var(--ink);
+  color: #fff;
   font-weight: 700;
   font-size: 0.95rem;
   padding: 0.75rem 1.25rem;
   border-radius: var(--radius);
+  letter-spacing: 0.02em;
   transition:
     background 0.2s ease,
     transform 0.2s ease,
-    opacity 0.2s ease;
+    opacity 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--brass-bright);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);
 }
 
 .btn:hover:not(:disabled) {
