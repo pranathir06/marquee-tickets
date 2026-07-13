@@ -592,7 +592,7 @@ img {
 
 .btn-ghost:hover:not(:disabled) {
   border-color: var(--brass);
-  background: transparent;
+  background: rgba(227, 24, 55, 0.12);
   color: var(--cream);
 }
 
