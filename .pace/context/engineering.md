@@ -2,53 +2,52 @@
 language: typescript
 package_manager: npm
 test_runner: none
-test_command: "n/a"
-test_file_pattern: "n/a"
+test_command: N/A
+test_file_pattern: N/A
 require_tests: false
 ---
 ## Module Map
 | Directory | Language | Purpose |
 |---|---|---|
-| src/ | TypeScript/React | SPA source code |
-| src/pages/ | TypeScript/React | Route-level pages |
-| src/lib/ | TypeScript | LocalStorage booking helpers |
-| src/data/ | TypeScript | Demo movie/showtime data |
+| src/ | TypeScript + React | SPA source code |
+| src/pages/ | TypeScript + React | Route-level pages |
+| src/data/ | TypeScript | Demo movie/showtime/seat data |
+| src/lib/ | TypeScript | localStorage booking helpers |
+| ./ | Config | Vite/TypeScript/Vercel config + HTML entry |
 
 ## Tech Stack
-| Component | Technology |
-|---|---|
-| UI | React 19, React Router 7 |
-| Build | Vite 6, TypeScript 5.7 |
-| Styling | CSS (src/index.css) |
-| Storage | Browser localStorage |
-| Hosting | Vercel (vercel.json rewrites) |
+| Layer | Technology | Notes |
+|---|---|---|
+| UI | React 19 | Functional components |
+| Routing | React Router DOM 7 | BrowserRouter, Routes |
+| Build | Vite 6 | @vitejs/plugin-react |
+| Language | TypeScript 5.7 | strict: true |
+| Storage | Browser localStorage | key: marquee-bookings |
+| Styling | CSS | src/index.css |
+| Hosting | Vercel | vercel.json rewrites |
 
 ## System Architecture
-| Component | Interaction |
+| Component | взаимодействие |
 |---|---|
-| BrowserRouter | Routes /, /movie/:movieId, /confirmation/:bookingId, /bookings |
-| MoviePage | Reads MOVIES, manages seat selection, writes Booking to localStorage |
-| ConfirmationPage | Reads Booking from localStorage by id |
-| BookingsPage | Lists/clears localStorage bookings |
+| Browser SPA | Renders React app from index.html + Vite build |
+| React Router | Client-side routes for home/movie/confirmation/bookings |
+| localStorage | Stores booking array for this browser only |
 
 ## Key Interfaces & Contracts
-| Interface | Definition |
+| Interface | Details |
 |---|---|
-| Booking | {id,movieId,movieTitle,showtimeId,time,screen,seats,total,createdAt} |
-| MOVIES | Array<Movie> demo data with showtimes |
 | Routes | /, /movie/:movieId, /confirmation/:bookingId, /bookings |
-| Storage Key | localStorage "marquee-bookings" |
+| Storage key | marquee-bookings (JSON array) |
+| Booking shape | {id,movieId,movieTitle,showtimeId,time,screen,seats[],total,createdAt} |
 
 ## Coding Conventions
-| Area | Convention |
+| Convention | Evidence |
 |---|---|
-| Components | Function components with hooks (useState/useMemo/useParams) |
-| Types | Exported TypeScript types (Booking, Movie, Showtime) |
-| Styling | Global CSS classes in src/index.css |
-| State | Seat selection in component state; localStorage as persistence |
+| Strict TypeScript | tsconfig.json: strict:true, noUnusedLocals:true |
+| Functional components | All pages/App export function components |
+| Client-only state | useState/useMemo + localStorage helpers |
 
 ## Test Patterns
-| Item | Details |
+| Pattern | Details |
 |---|---|
-| Test setup | None detected; pace.config.yaml require_tests: false |
-| Test command | n/a |
+| Tests | None configured (no test scripts or runner) |
