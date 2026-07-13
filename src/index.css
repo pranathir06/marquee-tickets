@@ -685,6 +685,7 @@ img {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
 }
 
 .booking-item h3 {
