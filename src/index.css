@@ -144,16 +144,16 @@ img {
 /* ——— Hero ——— */
 
 .hero {
-  padding: 3.5rem 0 2.5rem;
+  padding: 4rem 0 3rem;
   animation: rise 0.7s ease both;
 }
 
 .hero-kicker {
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--brass);
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.85rem;
 }
 
 .hero h1 {
