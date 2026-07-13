@@ -1,30 +1,29 @@
 ## Vision
-Purpose: Demo cinema ticket booking SPA for PACE pipeline testing
-Users: Moviegoers browsing films and reserving seats in-browser
+Purpose: Demo movie ticket booking SPA with client-only storage
+Users: Visitors browsing showtimes and managing tickets in the same browser
 
 ## Target Personas
 | Persona | Pain Point | Goal |
 |---|---|---|
-| Casual moviegoer | Hard to compare showtimes quickly | Pick a film and time fast |
-| Seat planner | Wants specific seats with availability | Select seats visually |
-| Demo reviewer | Needs lightweight demo app | Verify booking flow end-to-end |
+| Moviegoer | Wants fast seat selection without checkout | Pick a movie, showtime, seats quickly |
+| Demo reviewer | Needs sample UX without backend | Walk through booking flow end-to-end |
 
 ## MVP Scope
 In Scope:
-- Browse “Now showing” grid
-- View movie detail + showtimes
-- Select seats + confirm booking
-- View confirmation + “My tickets” list
-- LocalStorage-only persistence
+- Now showing list from sample data
+- Movie detail with showtime selection
+- Seat map selection with taken seats
+- Booking confirmation view
+- My tickets view from localStorage
 Out of Scope:
-- Payments
-- User accounts/auth
-- Backend APIs
-- Real-time seat inventory
+- Payments or real ticketing
+- Server-side persistence
+- Authentication or accounts
+- Admin inventory management
 
 ## Strategic Constraints
 | Constraint | Reason |
 |---|---|
-| No backend | README: bookings stored in browser localStorage |
-| SPA routing | Vercel rewrites to index.html |
-| Demo data only | MOVIES constant in src/data/movies.ts |
+| Client-only storage | README: bookings stored in browser only |
+| No backend | README: no backend or payment flow |
+| Vercel SPA routing | vercel.json rewrites all routes to index.html |
