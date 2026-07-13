@@ -223,6 +223,7 @@ img {
 
 .movie-card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.3);
 }
 
 .poster {
@@ -235,6 +236,7 @@ img {
   flex-direction: column;
   justify-content: flex-end;
   padding: 1rem;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), transparent 45%);
 }
 
 .poster::after {
