@@ -1,19 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
 :root {
-  --ink: #0e0c0a;
-  --ink-soft: #1a1612;
-  --panel: #221c16;
-  --line: rgba(212, 160, 23, 0.22);
-  --brass: #E4002B;
-  --brass-bright: #FF3B57;
-  --cream: #f3ebe0;
-  --cream-muted: #b8aea0;
-  --taken: #3a342e;
-  --danger: #c45c4a;
+  --ink: #0b0b0d;
+  --ink-soft: #15151b;
+  --panel: #1c1c24;
+  --line: rgba(227, 24, 55, 0.28);
+  --brass: #e31837;
+  --brass-bright: #ff4d6d;
+  --cream: #f5f5f5;
+  --cream-muted: #c7c7c7;
+  --taken: #2f2f36;
+  --danger: #ff7a6b;
   --font-display: "Anton", sans-serif;
   --font-body: "Figtree", system-ui, sans-serif;
-  --radius: 4px;
+  --radius: 6px;
   --max: 1100px;
 }
 
