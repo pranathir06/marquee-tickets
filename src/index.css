@@ -426,6 +426,7 @@ img {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 1.25rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }
 
 .screen-label {
