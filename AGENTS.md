@@ -1,32 +1,33 @@
 ## Tech Stack
-- TypeScript 5.7 (strict: true)
-- React 19 (functional components)
-- React Router DOM 7
+- TypeScript 5
+- React 19
+- react-router-dom 7
 - Vite 6
 - CSS (src/index.css)
-- Browser localStorage (key: marquee-bookings)
+- Browser localStorage (client-only persistence)
 
 ## Project Structure
-- src/ — main SPA source
-- src/pages/ — route-level pages
-- src/data/ — demo movies/showtimes/seats data
-- src/lib/ — localStorage booking helpers
-- src/index.css — global styles
-- index.html — Vite entry
-- vercel.json — SPA rewrites for Vercel
+- src/main.tsx: app entry, renders React app
+- src/App.tsx: BrowserRouter and route definitions
+- src/pages/: page-level route components (default exports)
+- src/data/movies.ts: in-memory MOVIES + Movie/Showtime types
+- src/lib/bookings.ts: Booking type + localStorage helpers
+- src/index.css: global styles
+- index.html: Vite HTML entry
 
 ## How to Run Tests
 N/A
 
 ## Conventions
-- Use functional React components only.
-- Keep TypeScript strict/noUnusedLocals compliant.
-- Use client-only state (useState/useMemo) + localStorage helpers in src/lib.
-- Respect routing paths: /, /movie/:movieId, /confirmation/:bookingId, /bookings.
-- Store bookings only under localStorage key `marquee-bookings` with documented shape.
+- Use React function components; pages/* are default exports.
+- Keep data typed explicitly (Movie, Showtime, Booking).
+- Use localStorage helpers in src/lib/bookings.ts; guard reads with try/catch.
+- Client-only: no backend calls or server-side state.
+- Follow existing hooks patterns (useState/useMemo/useNavigate).
 
 ## What NOT to Do
-- Do not add backend APIs, auth, or payments.
-- Do not store PII or payment data.
-- Do not introduce server-side persistence or env vars.
-- Do not change the localStorage key or booking shape without updating all readers/writers.
+- Do not add backend APIs, auth, or server-side storage.
+- Do not introduce payment/checkout flows or sensitive data storage.
+- Do not bypass localStorage safety guards.
+- Do not add environment variables or secrets (none are used).
+- Do not change routing away from SPA BrowserRouter.
