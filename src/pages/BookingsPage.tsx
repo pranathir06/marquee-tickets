@@ -1,13 +1,21 @@
 import { Link } from "react-router-dom";
-import { clearBookings, loadBookings } from "../lib/bookings";
-import { useState } from "react";
+import { clearBookings, loadBookings, BOOKINGS_EVENT } from "../lib/bookings";
+import { useEffect, useState } from "react";
 
 export default function BookingsPage() {
   const [bookings, setBookings] = useState(() => loadBookings());
 
+  useEffect(() => {
+    function handleUpdate() {
+      setBookings(loadBookings());
+    }
+
+    window.addEventListener(BOOKINGS_EVENT, handleUpdate);
+    return () => window.removeEventListener(BOOKINGS_EVENT, handleUpdate);
+  }, []);
+
   function handleClear() {
     clearBookings();
-    setBookings([]);
   }
 
   return (
