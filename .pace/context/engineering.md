@@ -2,52 +2,56 @@
 language: typescript
 package_manager: npm
 test_runner: none
-test_command: N/A
-test_file_pattern: N/A
+test_command: "N/A"
+test_file_pattern: "N/A"
 require_tests: false
 ---
+
 ## Module Map
 | Directory | Language | Purpose |
 |---|---|---|
-| src/ | TypeScript + React | SPA source code |
-| src/pages/ | TypeScript + React | Route-level pages |
+| src/ | TypeScript | React app source and routing |
+| src/pages/ | TypeScript | Page-level route components |
 | src/data/ | TypeScript | Demo movie/showtime/seat data |
 | src/lib/ | TypeScript | localStorage booking helpers |
-| ./ | Config | Vite/TypeScript/Vercel config + HTML entry |
 
 ## Tech Stack
-| Layer | Technology | Notes |
-|---|---|---|
-| UI | React 19 | Functional components |
-| Routing | React Router DOM 7 | BrowserRouter, Routes |
-| Build | Vite 6 | @vitejs/plugin-react |
-| Language | TypeScript 5.7 | strict: true |
-| Storage | Browser localStorage | key: marquee-bookings |
-| Styling | CSS | src/index.css |
-| Hosting | Vercel | vercel.json rewrites |
+| Component | Technology |
+|---|---|
+| UI framework | React 19 |
+| Routing | react-router-dom 7 |
+| Build tool | Vite 6 |
+| Language | TypeScript 5 |
+| Styling | CSS (src/index.css) |
+| Storage | Browser localStorage |
 
 ## System Architecture
-| Component | взаимодействие |
+| Flow | Details |
 |---|---|
-| Browser SPA | Renders React app from index.html + Vite build |
-| React Router | Client-side routes for home/movie/confirmation/bookings |
-| localStorage | Stores booking array for this browser only |
+| Entry | index.html loads /src/main.tsx |
+| Client routing | BrowserRouter with routes in src/App.tsx |
+| Data source | In-memory MOVIES + constants from src/data/movies.ts |
+| Persistence | Bookings stored via localStorage helpers in src/lib/bookings.ts |
 
 ## Key Interfaces & Contracts
-| Interface | Details |
+| Interface | Definition |
 |---|---|
+| Movie | src/data/movies.ts: id,title,genre,runtime,rating,synopsis,posterGradient,accent,showtimes |
+| Showtime | src/data/movies.ts: id,time,screen |
+| Booking | src/lib/bookings.ts: id,movieId,movieTitle,showtimeId,time,screen,seats,total,createdAt |
 | Routes | /, /movie/:movieId, /confirmation/:bookingId, /bookings |
-| Storage key | marquee-bookings (JSON array) |
-| Booking shape | {id,movieId,movieTitle,showtimeId,time,screen,seats[],total,createdAt} |
 
 ## Coding Conventions
 | Convention | Evidence |
 |---|---|
-| Strict TypeScript | tsconfig.json: strict:true, noUnusedLocals:true |
-| Functional components | All pages/App export function components |
-| Client-only state | useState/useMemo + localStorage helpers |
+| React function components | Default exports in pages/*.tsx |
+| LocalStorage safety | loadBookings try/catch returns [] |
+| State management | useState/useMemo/useNavigate hooks in MoviePage |
+| Type safety | Explicit types in data and booking modules |
 
 ## Test Patterns
-| Pattern | Details |
+| Item | Details |
 |---|---|
-| Tests | None configured (no test scripts or runner) |
+| Test runner | None configured (pace.config.yaml require_tests: false) |
+| Test files | N/A |
+| Test command | N/A |
