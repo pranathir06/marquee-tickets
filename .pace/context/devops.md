@@ -15,4 +15,4 @@
 4. npm run preview
 
 ## Deployment
-Deploy: Vercel (Vite preset, output dist, vercel.json SPA rewrites)
+Deploy: Vercel (vite build output dist, vercel.json rewrites to index.html)
