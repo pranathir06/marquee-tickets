@@ -2,137 +2,59 @@
   "version": 1,
   "language": "typescript",
   "entry_points": {
-    "main": "src/main.tsx"
+    "spa_entry": "src/main.tsx",
+    "router": "src/App.tsx"
   },
   "modules": [
     {
       "dir": ".",
-      "purpose": "Project configuration and HTML entry",
+      "purpose": "Project configuration and static HTML shell",
       "files": [
-        {
-          "path": "README.md",
-          "purpose": "Project overview, features, and setup",
-          "key_symbols": []
-        },
-        {
-          "path": "package.json",
-          "purpose": "NPM scripts and dependencies",
-          "key_symbols": []
-        },
-        {
-          "path": "package-lock.json",
-          "purpose": "NPM lockfile for dependencies",
-          "key_symbols": []
-        },
-        {
-          "path": "index.html",
-          "purpose": "HTML entry for Vite app",
-          "key_symbols": []
-        },
-        {
-          "path": "vite.config.ts",
-          "purpose": "Vite build configuration",
-          "key_symbols": ["defineConfig"]
-        },
-        {
-          "path": "tsconfig.json",
-          "purpose": "TypeScript compiler options",
-          "key_symbols": []
-        },
-        {
-          "path": "tsconfig.node.json",
-          "purpose": "TypeScript options for node tooling",
-          "key_symbols": []
-        },
-        {
-          "path": "vercel.json",
-          "purpose": "Vercel SPA rewrite rules",
-          "key_symbols": []
-        },
-        {
-          "path": "pace.config.yaml",
-          "purpose": "PACE pipeline configuration",
-          "key_symbols": []
-        },
-        {
-          "path": ".gitignore",
-          "purpose": "Git ignore rules",
-          "key_symbols": []
-        }
+        {"path": "README.md", "purpose": "Project overview and setup instructions", "key_symbols": []},
+        {"path": "package.json", "purpose": "npm scripts and dependencies", "key_symbols": []},
+        {"path": "package-lock.json", "purpose": "npm lockfile", "key_symbols": []},
+        {"path": "vite.config.ts", "purpose": "Vite build configuration", "key_symbols": ["defineConfig"]},
+        {"path": "tsconfig.json", "purpose": "TypeScript compiler options for app", "key_symbols": []},
+        {"path": "tsconfig.node.json", "purpose": "TypeScript compiler options for Vite config", "key_symbols": []},
+        {"path": "vercel.json", "purpose": "Vercel SPA rewrite configuration", "key_symbols": []},
+        {"path": "index.html", "purpose": "HTML entry point with root element", "key_symbols": []},
+        {"path": "pace.config.yaml", "purpose": "PACE agent configuration", "key_symbols": []},
+        {"path": "AGENTS.md", "purpose": "Agent instructions", "key_symbols": []},
+        {"path": ".gitignore", "purpose": "Git ignore rules", "key_symbols": []}
       ]
     },
     {
       "dir": "src",
       "purpose": "React SPA source",
       "files": [
-        {
-          "path": "src/main.tsx",
-          "purpose": "Bootstrap React app with BrowserRouter",
-          "key_symbols": ["createRoot"]
-        },
-        {
-          "path": "src/App.tsx",
-          "purpose": "App shell and route definitions",
-          "key_symbols": ["App"]
-        },
-        {
-          "path": "src/index.css",
-          "purpose": "Global styles for layout and components",
-          "key_symbols": []
-        },
-        {
-          "path": "src/vite-env.d.ts",
-          "purpose": "Vite TypeScript environment types",
-          "key_symbols": []
-        }
+        {"path": "src/main.tsx", "purpose": "React root render and router setup", "key_symbols": []},
+        {"path": "src/App.tsx", "purpose": "App layout and route definitions", "key_symbols": ["App"]},
+        {"path": "src/index.css", "purpose": "Global styles", "key_symbols": []},
+        {"path": "src/vite-env.d.ts", "purpose": "Vite TypeScript env types", "key_symbols": []}
       ]
     },
     {
       "dir": "src/data",
-      "purpose": "Demo data for movies and seating",
+      "purpose": "Demo movie and seat data",
       "files": [
-        {
-          "path": "src/data/movies.ts",
-          "purpose": "Movie list, showtimes, seating constants",
-          "key_symbols": ["Movie", "Showtime", "MOVIES", "ROWS", "TICKET_PRICE"]
-        }
+        {"path": "src/data/movies.ts", "purpose": "Movie catalog, seat layout, pricing constants", "key_symbols": ["Showtime", "Movie", "MOVIES", "ROWS", "SEATS_PER_ROW", "TICKET_PRICE", "TAKEN_SEATS"]}
       ]
     },
     {
       "dir": "src/lib",
-      "purpose": "Client storage helpers",
+      "purpose": "Client-side storage helpers",
       "files": [
-        {
-          "path": "src/lib/bookings.ts",
-          "purpose": "localStorage helpers for bookings",
-          "key_symbols": ["Booking", "loadBookings", "saveBooking", "clearBookings"]
-        }
+        {"path": "src/lib/bookings.ts", "purpose": "localStorage booking CRUD helpers", "key_symbols": ["Booking", "loadBookings", "saveBooking", "clearBookings"]}
       ]
     },
     {
       "dir": "src/pages",
-      "purpose": "Route pages",
+      "purpose": "Route page components",
       "files": [
-        {
-          "path": "src/pages/HomePage.tsx",
-          "purpose": "Now showing movie list",
-          "key_symbols": ["HomePage"]
-        },
-        {
-          "path": "src/pages/MoviePage.tsx",
-          "purpose": "Movie detail, showtime and seat selection",
-          "key_symbols": ["MoviePage"]
-        },
-        {
-          "path": "src/pages/ConfirmationPage.tsx",
-          "purpose": "Booking confirmation view",
-          "key_symbols": ["ConfirmationPage"]
-        },
-        {
-          "path": "src/pages/BookingsPage.tsx",
-          "purpose": "List and clear stored bookings",
-          "key_symbols": ["BookingsPage"]
-        }
+        {"path": "src/pages/HomePage.tsx", "purpose": "Now showing grid and hero content", "key_symbols": ["HomePage"]},
+        {"path": "src/pages/MoviePage.tsx", "purpose": "Showtime selection, seat map, booking confirmation", "key_symbols": ["MoviePage"]},
+        {"path": "src/pages/ConfirmationPage.tsx", "purpose": "Booking confirmation view", "key_symbols": ["ConfirmationPage"]},
+        {"path": "src/pages/BookingsPage.tsx", "purpose": "List and clear saved bookings", "key_symbols": ["BookingsPage"]}
       ]
     }
   ]
