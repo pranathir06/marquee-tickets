@@ -1,4 +1,4 @@
-import { NavLink, Route, Routes } from "react-router-dom";
+import { NavLink, Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import MoviePage from "./pages/MoviePage";
 import ConfirmationPage from "./pages/ConfirmationPage";
@@ -8,6 +8,7 @@ import { BOOKINGS_EVENT } from "./lib/bookings";
 
 export default function App() {
   const [hasNewBooking, setHasNewBooking] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     function handleUpdate(event: Event) {
@@ -15,11 +16,20 @@ export default function App() {
       if (detail?.action === "saved") {
         setHasNewBooking(true);
       }
+      if (detail?.action === "cleared") {
+        setHasNewBooking(false);
+      }
     }
 
     window.addEventListener(BOOKINGS_EVENT, handleUpdate);
     return () => window.removeEventListener(BOOKINGS_EVENT, handleUpdate);
   }, []);
+
+  useEffect(() => {
+    if (location.pathname === "/bookings") {
+      setHasNewBooking(false);
+    }
+  }, [location.pathname]);
 
   function handleNavClick() {
     setHasNewBooking(false);
