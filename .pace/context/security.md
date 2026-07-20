@@ -1,21 +1,21 @@
 ## Sensitive Data
 | Data | Where Stored | Protection |
 |---|---|---|
-| Booking history (movie/title/time/seats/total) | Browser localStorage key marquee-bookings | None beyond browser storage (no encryption) |
+| Ticket bookings | Browser localStorage key "marquee-bookings" | Browser sandbox; no server transmission |
 
 ## Trust Boundaries
 | Caller | Callee | Auth Method |
 |---|---|---|
-| End user browser | localStorage | Same-origin browser storage (no auth) |
-| Browser | Vercel static hosting | HTTPS via hosting platform (implied) |
+| Browser user | React SPA | None (client-only app) |
+| SPA | localStorage API | Browser security model |
 
 ## Security Requirements
-- No PII or payment data stored (demo-only)
-- LocalStorage access only from same-origin app
-- Client-side routing must not expose server endpoints (none present)
+- No network calls for booking data (client-only demo)
+- Do not store payment details (no payment flow present)
+- Handle corrupt localStorage safely (try/catch in loadBookings)
 
 ## Security Checklist
-No backend endpoints: pass
-No auth flows present: pass
-Client-only storage documented: pass
-Secrets in repo: fail (not verified; no secrets scanning data)
+LocalStorage access guarded by try/catch: PASS
+Backend API usage present: FAIL
+Authentication implemented: FAIL
+Secrets in repo: PASS
