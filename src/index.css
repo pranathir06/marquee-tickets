@@ -115,11 +115,24 @@ img {
   font-weight: 500;
   color: var(--cream-muted);
   transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .nav a:hover,
 .nav a.active {
   color: var(--cream);
+}
+
+.nav-badge {
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.35rem;
+  border-radius: 999px;
+  background: var(--brass);
+  color: var(--ink);
 }
 
 .site-footer {

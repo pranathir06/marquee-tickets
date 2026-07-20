@@ -11,6 +11,16 @@ export type Booking = {
 };
 
 const STORAGE_KEY = "marquee-bookings";
+export const BOOKINGS_EVENT = "marquee-bookings-change";
+
+function dispatchBookingEvent(action: "saved" | "cleared") {
+  if (typeof window === "undefined") return;
+  window.dispatchEvent(
+    new CustomEvent(BOOKINGS_EVENT, {
+      detail: { action },
+    }),
+  );
+}
 
 export function loadBookings(): Booking[] {
   try {
@@ -25,8 +35,10 @@ export function loadBookings(): Booking[] {
 export function saveBooking(booking: Booking): void {
   const existing = loadBookings();
   localStorage.setItem(STORAGE_KEY, JSON.stringify([booking, ...existing]));
+  dispatchBookingEvent("saved");
 }
 
 export function clearBookings(): void {
   localStorage.removeItem(STORAGE_KEY);
+  dispatchBookingEvent("cleared");
 }
