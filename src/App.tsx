@@ -3,8 +3,28 @@ import HomePage from "./pages/HomePage";
 import MoviePage from "./pages/MoviePage";
 import ConfirmationPage from "./pages/ConfirmationPage";
 import BookingsPage from "./pages/BookingsPage";
+import { useEffect, useState } from "react";
+import { BOOKINGS_EVENT } from "./lib/bookings";
 
 export default function App() {
+  const [hasNewBooking, setHasNewBooking] = useState(false);
+
+  useEffect(() => {
+    function handleUpdate(event: Event) {
+      const detail = (event as CustomEvent<{ action: string }>).detail;
+      if (detail?.action === "saved") {
+        setHasNewBooking(true);
+      }
+    }
+
+    window.addEventListener(BOOKINGS_EVENT, handleUpdate);
+    return () => window.removeEventListener(BOOKINGS_EVENT, handleUpdate);
+  }, []);
+
+  function handleNavClick() {
+    setHasNewBooking(false);
+  }
+
   return (
     <>
       <header className="site-header">
@@ -17,7 +37,14 @@ export default function App() {
             <NavLink to="/" end>
               Now showing
             </NavLink>
-            <NavLink to="/bookings">My tickets</NavLink>
+            <NavLink to="/bookings" onClick={handleNavClick}>
+              My tickets
+              {hasNewBooking ? (
+                <span className="nav-badge" aria-label="New tickets">
+                  New
+                </span>
+              ) : null}
+            </NavLink>
           </nav>
         </div>
       </header>
