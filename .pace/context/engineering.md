@@ -9,12 +9,11 @@ require_tests: false
 ## Module Map
 | Directory | Language | Purpose |
 |---|---|---|
+| . | Mixed | Root config, index.html, Vite/Vercel config |
 | src | TypeScript/TSX | React SPA source code |
 | src/pages | TypeScript/TSX | Route-level pages |
-| src/data | TypeScript | Demo movie/showtime data |
+| src/data | TypeScript | Demo movie/showtime/seat data |
 | src/lib | TypeScript | localStorage booking utilities |
-| src/index.css | CSS | Global styles |
-| public/index.html | HTML | SPA shell (root index.html) |
 
 ## Tech Stack
 | Component | Technology |
@@ -23,7 +22,7 @@ require_tests: false
 | Routing | react-router-dom 7 |
 | Build Tool | Vite 6 |
 | Language | TypeScript 5 |
-| Styling | CSS (index.css) |
+| Styling | CSS (src/index.css) |
 | Storage | Browser localStorage |
 | Hosting | Vercel (vercel.json) |
 
