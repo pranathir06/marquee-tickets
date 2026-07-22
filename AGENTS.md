@@ -7,27 +7,27 @@
 - Browser localStorage (client-only persistence)
 
 ## Project Structure
-- src/main.tsx: app entry, renders React app
-- src/App.tsx: BrowserRouter and route definitions
-- src/pages/: page-level route components (default exports)
-- src/data/movies.ts: in-memory MOVIES + Movie/Showtime types
-- src/lib/bookings.ts: Booking type + localStorage helpers
-- src/index.css: global styles
-- index.html: Vite HTML entry
+- index.html: SPA entry root element
+- src/main.tsx: mounts React app
+- src/App.tsx: route definitions (/ , /movie/:movieId, /confirmation/:bookingId, /bookings)
+- src/pages/: route-level React pages
+- src/data/movies.ts: in-memory movie/showtime data + type aliases
+- src/lib/bookings.ts: localStorage booking utilities + Booking type
+- src/index.css: global styling
 
 ## How to Run Tests
-N/A
+None (no test runner configured)
 
 ## Conventions
-- Use React function components; pages/* are default exports.
-- Keep data typed explicitly (Movie, Showtime, Booking).
-- Use localStorage helpers in src/lib/bookings.ts; guard reads with try/catch.
-- Client-only: no backend calls or server-side state.
-- Follow existing hooks patterns (useState/useMemo/useNavigate).
+- Use function components: `default function ComponentName()`
+- Keep strict TypeScript; avoid unused locals/params
+- Use type aliases for domain data (Movie, Showtime, Booking)
+- Persist bookings only via `localStorage` key `marquee-bookings`
+- Keep routing client-side via `react-router-dom`
 
 ## What NOT to Do
-- Do not add backend APIs, auth, or server-side storage.
-- Do not introduce payment/checkout flows or sensitive data storage.
-- Do not bypass localStorage safety guards.
-- Do not add environment variables or secrets (none are used).
-- Do not change routing away from SPA BrowserRouter.
+- Do not add backend calls, APIs, or server persistence
+- Do not implement payment or authentication flows
+- Do not store sensitive data beyond localStorage
+- Do not change routes without updating App.tsx
+- Do not relax TypeScript strictness settings
