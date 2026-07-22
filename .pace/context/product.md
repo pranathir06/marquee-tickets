@@ -1,29 +1,29 @@
 ## Vision
-Purpose: Demo movie ticket booking experience with local-only storage
-Users: Moviegoers browsing showtimes and booking seats in-browser
+Purpose: Demo movie ticket booking SPA for browsing films, selecting seats, and saving bookings locally
+Users: Moviegoers using a browser to simulate booking tickets
 
 ## Target Personas
 | Persona | Pain Point | Goal |
 |---|---|---|
-| Casual moviegoer | Hard to pick showtimes quickly | Browse films and select a time fast |
-| Mobile browser user | Wants a simple seat picker | Choose seats and confirm without payment |
-| Repeat visitor | Needs to see prior bookings | View saved tickets in the same browser |
+| Casual moviegoer | Needs quick way to pick showtime and seats | Book seats fast without login |
+| Demo reviewer | Wants to evaluate a ticketing flow without backend | Walk through booking and confirmation |
+| Returning viewer | Needs access to prior bookings on same device | View saved tickets in browser storage |
 
 ## MVP Scope
 In Scope:
-- Browse now-showing films with posters and details
-- Select showtimes and seats
-- Confirm booking with ticket summary
-- View bookings stored in localStorage
-
+- Browse now-showing movies
+- Select showtime and seats
+- Confirm booking and view ticket summary
+- View/clear saved bookings in browser
 Out of Scope:
-- Server-side storage or accounts
-- Payments or checkout flows
-- Admin/management tools
+- Payments or checkout
+- User accounts or authentication
+- Backend persistence or APIs
+- Real-time seat availability
 
 ## Strategic Constraints
 | Constraint | Reason |
 |---|---|
-| No backend | README: bookings stored in browser only |
-| Client-side routing | React Router with SPA routing |
-| Demo data only | MOVIES constant provides sample films |
+| Client-only storage (localStorage) | README states bookings stored in browser only |
+| No backend | README states no backend or payment flow |
+| SPA routing | Vercel rewrites to index.html for client navigation |
