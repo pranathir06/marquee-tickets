@@ -7,14 +7,83 @@
   },
   "modules": [
     {
-      "dir": ".",
-      "purpose": "Project config and static HTML entry",
+      "dir": "src",
+      "purpose": "SPA entry, routes, and global styles",
       "files": [
         {
-          "path": "index.html",
-          "purpose": "HTML shell with root div and module script",
+          "path": "src/main.tsx",
+          "purpose": "Bootstraps React app with BrowserRouter",
+          "key_symbols": ["createRoot"]
+        },
+        {
+          "path": "src/App.tsx",
+          "purpose": "Defines layout and React Router routes",
+          "key_symbols": ["App"]
+        },
+        {
+          "path": "src/index.css",
+          "purpose": "Global styles, layout, and component styling",
           "key_symbols": []
         },
+        {
+          "path": "src/vite-env.d.ts",
+          "purpose": "Vite TypeScript environment declarations",
+          "key_symbols": []
+        }
+      ]
+    },
+    {
+      "dir": "src/data",
+      "purpose": "Static movie and seating data",
+      "files": [
+        {
+          "path": "src/data/movies.ts",
+          "purpose": "Movie list, showtimes, seat layout constants",
+          "key_symbols": ["MOVIES", "ROWS", "SEATS_PER_ROW", "TICKET_PRICE", "TAKEN_SEATS"]
+        }
+      ]
+    },
+    {
+      "dir": "src/lib",
+      "purpose": "Local storage utilities",
+      "files": [
+        {
+          "path": "src/lib/bookings.ts",
+          "purpose": "Load/save/clear bookings in localStorage",
+          "key_symbols": ["loadBookings", "saveBooking", "clearBookings"]
+        }
+      ]
+    },
+    {
+      "dir": "src/pages",
+      "purpose": "Route-level pages",
+      "files": [
+        {
+          "path": "src/pages/HomePage.tsx",
+          "purpose": "Now showing grid and hero content",
+          "key_symbols": ["HomePage"]
+        },
+        {
+          "path": "src/pages/MoviePage.tsx",
+          "purpose": "Movie detail, showtimes, seat selection, booking confirm",
+          "key_symbols": ["MoviePage", "toggleSeat", "confirmBooking"]
+        },
+        {
+          "path": "src/pages/ConfirmationPage.tsx",
+          "purpose": "Booking confirmation view",
+          "key_symbols": ["ConfirmationPage"]
+        },
+        {
+          "path": "src/pages/BookingsPage.tsx",
+          "purpose": "List and clear saved bookings",
+          "key_symbols": ["BookingsPage", "handleClear"]
+        }
+      ]
+    },
+    {
+      "dir": ".",
+      "purpose": "Project configuration",
+      "files": [
         {
           "path": "package.json",
           "purpose": "NPM scripts and dependencies",
@@ -27,102 +96,33 @@
         },
         {
           "path": "tsconfig.json",
-          "purpose": "TypeScript compiler settings",
+          "purpose": "TypeScript compiler options for app",
           "key_symbols": []
         },
         {
           "path": "tsconfig.node.json",
-          "purpose": "TypeScript config for node tooling",
+          "purpose": "TypeScript config for Vite config",
+          "key_symbols": []
+        },
+        {
+          "path": "index.html",
+          "purpose": "HTML entry with root div and font imports",
           "key_symbols": []
         },
         {
           "path": "vercel.json",
-          "purpose": "Vercel SPA rewrite configuration",
+          "purpose": "Vercel rewrite rules for SPA routing",
           "key_symbols": []
         },
         {
           "path": "pace.config.yaml",
-          "purpose": "PACE configuration",
+          "purpose": "PACE config (require_tests false)",
           "key_symbols": []
         },
         {
           "path": "README.md",
-          "purpose": "Project overview and setup",
+          "purpose": "Project overview and usage",
           "key_symbols": []
-        }
-      ]
-    },
-    {
-      "dir": "src",
-      "purpose": "React application source",
-      "files": [
-        {
-          "path": "src/main.tsx",
-          "purpose": "Mounts React app with BrowserRouter",
-          "key_symbols": []
-        },
-        {
-          "path": "src/App.tsx",
-          "purpose": "App layout and route definitions",
-          "key_symbols": ["App"]
-        },
-        {
-          "path": "src/index.css",
-          "purpose": "Global styles and layout",
-          "key_symbols": []
-        },
-        {
-          "path": "src/vite-env.d.ts",
-          "purpose": "Vite client type references",
-          "key_symbols": []
-        }
-      ]
-    },
-    {
-      "dir": "src/data",
-      "purpose": "Demo movie, seat, and pricing data",
-      "files": [
-        {
-          "path": "src/data/movies.ts",
-          "purpose": "Movie list, showtimes, and seat constants",
-          "key_symbols": ["MOVIES", "ROWS", "SEATS_PER_ROW", "TAKEN_SEATS", "TICKET_PRICE"]
-        }
-      ]
-    },
-    {
-      "dir": "src/lib",
-      "purpose": "Client storage helpers",
-      "files": [
-        {
-          "path": "src/lib/bookings.ts",
-          "purpose": "Load/save/clear bookings in localStorage",
-          "key_symbols": ["loadBookings", "saveBooking", "clearBookings"]
-        }
-      ]
-    },
-    {
-      "dir": "src/pages",
-      "purpose": "Route-level UI pages",
-      "files": [
-        {
-          "path": "src/pages/HomePage.tsx",
-          "purpose": "Now showing grid and hero content",
-          "key_symbols": ["HomePage"]
-        },
-        {
-          "path": "src/pages/MoviePage.tsx",
-          "purpose": "Movie detail, showtime selection, and seat booking",
-          "key_symbols": ["MoviePage"]
-        },
-        {
-          "path": "src/pages/ConfirmationPage.tsx",
-          "purpose": "Booking confirmation ticket display",
-          "key_symbols": ["ConfirmationPage"]
-        },
-        {
-          "path": "src/pages/BookingsPage.tsx",
-          "purpose": "List and clear saved bookings",
-          "key_symbols": ["BookingsPage"]
         }
       ]
     }
