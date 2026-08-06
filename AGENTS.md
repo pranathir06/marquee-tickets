@@ -4,30 +4,28 @@
 - react-router-dom 7
 - Vite 6
 - CSS (src/index.css)
-- Browser localStorage (client-only persistence)
+- npm (package manager)
 
 ## Project Structure
-- index.html: SPA entry root element
-- src/main.tsx: mounts React app
-- src/App.tsx: route definitions (/ , /movie/:movieId, /confirmation/:bookingId, /bookings)
-- src/pages/: route-level React pages
-- src/data/movies.ts: in-memory movie/showtime data + type aliases
-- src/lib/bookings.ts: localStorage booking utilities + Booking type
-- src/index.css: global styling
+- src/main.tsx: SPA bootstrapping and root render
+- src/App.tsx: Routes (/, /movie/:movieId, /confirmation/:bookingId, /bookings)
+- src/pages/: Route-level pages (home, movie, confirmation, bookings)
+- src/data/movies.ts: Static MOVIES/showtimes/seat layout data
+- src/lib/bookings.ts: localStorage helpers + Booking type + STORAGE_KEY
+- src/index.css: global styles
 
 ## How to Run Tests
-None (no test runner configured)
+N/A
 
 ## Conventions
-- Use function components: `default function ComponentName()`
-- Keep strict TypeScript; avoid unused locals/params
-- Use type aliases for domain data (Movie, Showtime, Booking)
-- Persist bookings only via `localStorage` key `marquee-bookings`
-- Keep routing client-side via `react-router-dom`
+- Use strict TypeScript; fix all type errors.
+- Avoid unused vars/params (noUnusedLocals/Parameters true).
+- Prefer functional React components (export default function Component()).
+- Keep data client-side (localStorage only).
+- Maintain existing routing patterns in App.tsx.
 
 ## What NOT to Do
-- Do not add backend calls, APIs, or server persistence
-- Do not implement payment or authentication flows
-- Do not store sensitive data beyond localStorage
-- Do not change routes without updating App.tsx
-- Do not relax TypeScript strictness settings
+- Do not add backend APIs, auth, or payment flows.
+- Do not introduce network persistence for bookings.
+- Do not change localStorage key "marquee-bookings".
+- Do not break client-side routing (Vercel rewrite to index.html).
