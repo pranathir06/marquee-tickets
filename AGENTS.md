@@ -3,29 +3,29 @@
 - React 19
 - react-router-dom 7
 - Vite 6
-- CSS (global stylesheet in src/index.css)
-- Browser localStorage (key: "marquee-bookings")
+- Global CSS (src/index.css)
+- Browser localStorage
 
 ## Project Structure
-- index.html: loads /src/main.tsx
-- src/main.tsx: mounts React root, wraps App in BrowserRouter
-- src/App.tsx: layout + route definitions
-- src/pages/: route-level pages (movie list, details, booking, confirmation, bookings)
-- src/data/movies.ts: MOVIES constants, showtimes, pricing, types
-- src/lib/bookings.ts: localStorage read/write helpers + Booking type
+- src/main.tsx: React root, BrowserRouter mount
+- src/App.tsx: App routes (/ , /movie/:movieId, /confirmation/:bookingId, /bookings)
+- src/pages/: Route-level pages (MoviePage, ConfirmationPage, BookingsPage)
+- src/data/movies.ts: Movie/showtime/seat constants
+- src/lib/bookings.ts: localStorage helpers (key "marquee-bookings")
+- src/index.css: Global styles
 
 ## How to Run Tests
 N/A
 
 ## Conventions
-- Use function components with default export.
+- Use function components with default exports.
 - Keep data constants in src/data/movies.ts.
-- Use React hooks (useState/useMemo) for state.
-- Style via class-based CSS in the global stylesheet.
-- Preserve localStorage key "marquee-bookings".
+- Use React hooks for component state.
+- Style via class-based global CSS (no CSS-in-JS).
+- Preserve localStorage key "marquee-bookings" and Booking shape.
 
 ## What NOT to Do
 - Do not add backend APIs, auth, or payment flows.
-- Do not change the localStorage key or move data off-client.
-- Do not break SPA routing (all routes must resolve to index.html).
-- Do not introduce new test/lint tooling unless requested.
+- Do not change SPA routing behavior; keep routes client-side.
+- Do not rename or migrate the localStorage key "marquee-bookings".
+- Do not introduce a test runner or test files unless requested.
