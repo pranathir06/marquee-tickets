@@ -1,7 +1,7 @@
 ## CI/CD
 | Trigger | Workflow | Jobs |
 |---|---|---|
-| None | .github/workflows not present | N/A |
+| None | None | None |
 
 ## Environment Variables
 | Name | Required | Purpose |
@@ -15,4 +15,4 @@
 4. npm run preview
 
 ## Deployment
-Deploy: Vercel (Vite preset; output dist; vercel.json rewrites / -> /index.html)
+Deploy: Vercel (build: npm run build, output: dist; vercel.json SPA rewrite)
