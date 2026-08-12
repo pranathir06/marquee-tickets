@@ -1,58 +1,62 @@
 ---
 language: typescript
 package_manager: npm
-test_runner: N/A
-test_command: "N/A"
-test_file_pattern: "N/A"
+test_runner: none
+test_command: N/A
+test_file_pattern: N/A
 require_tests: false
 ---
 ## Module Map
 | Directory | Language | Purpose |
 |---|---|---|
-| src/ | TypeScript/TSX | React SPA source |
-| src/data/ | TypeScript | Demo movie/showtime/seat data |
-| src/lib/ | TypeScript | localStorage booking helpers |
-| src/pages/ | TypeScript/TSX | Route-level pages |
+| src/ | TypeScript/TSX | React UI entrypoint and routing |
+| src/pages/ | TypeScript/TSX | Page-level views (home, movie, confirmation, bookings) |
+| src/data/ | TypeScript | Static movie, seat, pricing data |
+| src/lib/ | TypeScript | Booking persistence helpers (localStorage) |
+| src/index.css | CSS | Global styles and layout |
+| / | JSON/TS/HTML | App config (Vite, TS, Vercel, HTML shell) |
 
 ## Tech Stack
 | Component | Technology |
 |---|---|
-| UI framework | React 19 |
-| Routing | react-router-dom 7 |
-| Build tool | Vite 6 |
-| Language | TypeScript 5 |
-| Styling | CSS (src/index.css) |
+| UI Framework | React 19 |
+| Routing | react-router-dom 7.1 |
+| Build Tool | Vite 6 |
+| Language | TypeScript 5.7 |
 | Storage | Browser localStorage |
+| Styling | CSS (index.css) |
 
 ## System Architecture
-| Component | Interactions |
-|---|---|
-| index.html | Loads /src/main.tsx module |
-| main.tsx | Mounts React root, wraps App in BrowserRouter |
-| App.tsx | Defines layout + routes to pages |
-| pages/* | Render UI, read/write bookings via lib/bookings.ts |
-| data/movies.ts | Supplies MOVIES, seating config, pricing |
-| lib/bookings.ts | Reads/writes bookings in localStorage |
+| Component | Interacts With | Notes |
+|---|---|---|
+| index.html | src/main.tsx | Loads Vite module entry |
+| src/main.tsx | App.tsx + BrowserRouter | Mounts React app |
+| App.tsx | Routes -> Pages | Client-side routing for 4 pages |
+| MoviePage | data/movies.ts | Reads movie/showtime/seat data |
+| MoviePage | lib/bookings.ts | Saves booking to localStorage |
+| ConfirmationPage | lib/bookings.ts | Reads bookings from localStorage |
+| BookingsPage | lib/bookings.ts | Lists/clears localStorage bookings |
 
 ## Key Interfaces & Contracts
-| Interface/Contract | Location | Notes |
+| Interface | Location | Shape |
 |---|---|---|
-| Movie, Showtime types | src/data/movies.ts | Movie shape for UI + showtimes |
-| Booking type | src/lib/bookings.ts | Booking schema persisted to localStorage |
+| Booking | src/lib/bookings.ts | {id,movieId,movieTitle,showtimeId,time,screen,seats[],total,createdAt} |
+| loadBookings/saveBooking/clearBookings | src/lib/bookings.ts | localStorage CRUD for "marquee-bookings" |
+| Movie/Showtime | src/data/movies.ts | Movie includes showtimes[] with id/time/screen |
 | Routes | src/App.tsx | /, /movie/:movieId, /confirmation/:bookingId, /bookings |
-| localStorage key | src/lib/bookings.ts | "marquee-bookings" |
+| Pricing | src/data/movies.ts | TICKET_PRICE = 12.5 |
 
 ## Coding Conventions
-| Area | Convention |
+| Convention | Evidence |
 |---|---|
-| Components | Function components with default export |
-| State | React useState/useMemo hooks |
-| Styling | Class-based CSS, single global stylesheet |
-| Data | Constants in data/movies.ts |
+| Functional components + hooks | useState/useMemo/useParams in pages |
+| TypeScript strict mode | tsconfig.json "strict": true |
+| Client-only storage | localStorage in lib/bookings.ts |
+| CSS class naming | kebab-case in index.css + JSX className |
 
 ## Test Patterns
 | Item | Details |
 |---|---|
-| Test runner | None configured (pace.config.yaml require_tests: false) |
+| Test framework | None configured |
 | Test command | N/A |
 | Test files | N/A |
