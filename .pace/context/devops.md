@@ -6,7 +6,7 @@
 ## Environment Variables
 | Name | Required | Purpose |
 |---|---|---|
-| None | No | No env vars referenced |
+| None | No | N/A |
 
 ## Local Dev
 1. npm install
@@ -15,4 +15,4 @@
 4. npm run preview
 
 ## Deployment
-Deploy: Vercel (build: npm run build, output: dist; vercel.json SPA rewrite)
+Deploy: Vercel (Vite build output dist, rewrites in vercel.json)
