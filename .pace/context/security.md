@@ -1,21 +1,22 @@
 ## Sensitive Data
 | Data | Where Stored | Protection |
 |---|---|---|
-| Booking records (movie, seats, total) | Browser localStorage key "marquee-bookings" | Browser storage only; no server transmission |
+| Booking records (movie, seats, total) | Browser localStorage (key: marquee-bookings) | Same-origin browser storage only |
 
 ## Trust Boundaries
 | Caller | Callee | Auth Method |
 |---|---|---|
-| Browser UI | localStorage API | Same-origin browser storage (no auth) |
-| Browser UI | Client-side routes | None (SPA) |
+| User browser | localStorage | Browser same-origin policy |
+| SPA routes | React Router | None (client-side only) |
 
 ## Security Requirements
-- No payment or PII collection (README)
-- Do not add network calls that transmit bookings
-- Keep bookings in-browser only unless backend added
+- Do not add backend APIs, auth, or payment flows
+- Keep bookings in localStorage only
+- Preserve localStorage key "marquee-bookings"
+- Maintain Vercel rewrite to index.html for SPA routing
 
 ## Security Checklist
-Require auth for bookings: Fail
-Encryption at rest: Fail
-Secrets in repo: Pass
-Server-side validation: Fail
+No backend data storage: pass
+No payment handling: pass
+LocalStorage key unchanged: pass
+No external auth flows: pass
