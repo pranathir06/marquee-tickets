@@ -2,52 +2,54 @@
 language: typescript
 package_manager: npm
 test_runner: none
-test_command: "N/A"
-test_file_pattern: "N/A"
+test_command: N/A
+test_file_pattern: N/A
 require_tests: false
 ---
 ## Module Map
 | Directory | Language | Purpose |
 |---|---|---|
-| src/ | TypeScript/React | SPA entry, routes, UI composition |
-| src/data/ | TypeScript | Demo movie, showtime, seat data constants |
+| src/ | TypeScript, CSS | React SPA source code and styles |
+| src/data/ | TypeScript | Static movie/showtime/seat data |
 | src/lib/ | TypeScript | localStorage booking helpers |
-| src/pages/ | TypeScript/React | Route-level pages (home, movie, confirmation, bookings) |
+| src/pages/ | TypeScript | Route-level pages |
 
 ## Tech Stack
 | Component | Technology |
 |---|---|
-| UI framework | React 19 |
+| UI Framework | React 19 |
 | Router | react-router-dom 7 |
-| Build tool | Vite 6 |
+| Build Tool | Vite 6 |
 | Language | TypeScript 5 |
 | Styling | CSS (src/index.css) |
+| Storage | Browser localStorage |
 
 ## System Architecture
-| Flow | Description |
+| Flow | Details |
 |---|---|
-| SPA boot | index.html → src/main.tsx → <App /> |
-| Routing | BrowserRouter with routes: /, /movie/:movieId, /confirmation/:bookingId, /bookings |
-| Data | Static MOVIES/seat data in src/data/movies.ts |
-| Persistence | localStorage key "marquee-bookings" via src/lib/bookings.ts |
+| SPA bootstrap | index.html -> src/main.tsx -> React root + BrowserRouter |
+| Routing | src/App.tsx defines routes /, /movie/:movieId, /confirmation/:bookingId, /bookings |
+| Data source | src/data/movies.ts provides static MOVIES, seat layout, pricing |
+| Persistence | src/lib/bookings.ts reads/writes localStorage key "marquee-bookings" |
 
 ## Key Interfaces & Contracts
-| Interface | Location | Details |
+| Interface | Location | Contract |
 |---|---|---|
 | Booking type | src/lib/bookings.ts | {id,movieId,movieTitle,showtimeId,time,screen,seats,total,createdAt} |
-| MOVIES data | src/data/movies.ts | Movie[] with showtimes + seat layout constants |
-| localStorage key | src/lib/bookings.ts | STORAGE_KEY = "marquee-bookings" |
+| Movie type | src/data/movies.ts | {id,title,genre,runtime,rating,synopsis,posterGradient,accent,showtimes[]} |
+| Storage key | src/lib/bookings.ts | localStorage key "marquee-bookings" |
 | Routes | src/App.tsx | /, /movie/:movieId, /confirmation/:bookingId, /bookings |
 
 ## Coding Conventions
 | Rule | Evidence |
 |---|---|
-| Strict TypeScript | tsconfig.json: "strict": true |
-| No unused vars/params | tsconfig.json: noUnusedLocals/Parameters true |
+| Strict TS, no unused vars/params | tsconfig.json: strict, noUnusedLocals, noUnusedParameters |
 | Functional components | All pages export default function Component() |
+| Client-only persistence | AGENTS.md: keep data client-side (localStorage only) |
+| Stable storage key | AGENTS.md: do not change "marquee-bookings" |
 
 ## Test Patterns
-| Aspect | Details |
+| Item | Details |
 |---|---|
-| Test runner | None configured (package.json scripts lack test) |
-| Test files | None present in repo |
+| Test framework | None found in package.json |
+| Test command | N/A |
