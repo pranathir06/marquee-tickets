@@ -1,31 +1,31 @@
 ## Vision
-Purpose: Simple demo movie ticket booking SPA with local-only storage
-Users: Moviegoers evaluating showtimes and selecting seats in-browser
+Purpose: Demo movie ticket booking SPA with seat selection and local bookings
+Users: Moviegoers evaluating showtimes and reserving seats in-browser
 
 ## Target Personas
 | Persona | Pain Point | Goal |
 |---|---|---|
-| Casual moviegoer | Wants quick view of now showing and showtimes | Pick a film and time fast |
-| Seat planner | Needs to see available vs taken seats | Choose seats visually |
-| Returning viewer | Wants to see past bookings | View saved tickets in browser |
+| Casual moviegoer | Hard to see what’s playing quickly | Browse films and showtimes fast |
+| Planner | Needs seat availability | Pick specific seats before booking |
+| Demo reviewer | Needs sample flow without payment | Complete booking without backend |
 
 ## MVP Scope
 In Scope:
 - Browse now showing movies
-- View movie details + showtimes
-- Seat selection with taken/selected states
-- Confirm booking and view confirmation
-- View and clear bookings stored in localStorage
-
+- View movie details and showtimes
+- Select seats from seat map
+- Confirm booking and view ticket summary
+- View/clear saved bookings in browser
 Out of Scope:
-- Backend APIs
-- Payments
-- Authentication
-- Server-side storage
+- Payments or checkout
+- Backend storage or user accounts
+- Real-time seat inventory
+- Admin/movie management
 
 ## Strategic Constraints
 | Constraint | Reason |
 |---|---|
-| No backend or payment flow | README.md + AGENTS.md: demo only, localStorage only |
-| Bookings stored in localStorage | README.md + src/lib/bookings.ts |
-| Client-side routing must work on Vercel | README.md + vercel.json rewrite |
+| Client-only storage | Bookings stored in localStorage only (README.md) |
+| No backend | Demo-only; no server APIs |
+| Fixed demo data | Static MOVIES list in src/data/movies.ts |
+| Vercel SPA rewrite | vercel.json rewrites all routes to index.html |
