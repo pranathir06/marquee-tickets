@@ -1,22 +1,20 @@
 ## Sensitive Data
 | Data | Where Stored | Protection |
 |---|---|---|
-| Booking records (movie, seats, time, total) | Browser localStorage key "marquee-bookings" | None (client-only storage) |
+| Ticket bookings (movie, seats, time) | Browser localStorage key "marquee-bookings" | Same-origin browser storage only; no server persistence |
 
 ## Trust Boundaries
 | Caller | Callee | Auth Method |
 |---|---|---|
-| Browser UI | localStorage API | Same-origin browser storage |
-| Browser UI | React Router navigation | None (client-side only) |
+| Browser UI | localStorage API | Browser same-origin policy |
 
 ## Security Requirements
-- No backend services or external data submission
+- No backend endpoints; keep all data client-side only
 - Do not change localStorage key "marquee-bookings"
-- Keep bookings client-side only
-- Preserve SPA routing (all routes to index.html)
+- Preserve Vercel rewrite to index.html for SPA routing
 
 ## Security Checklist
-Local storage only: pass
-No network persistence: pass
-No auth/payment flows: pass
-Route rewrite for SPA: pass
+LocalStorage-only persistence: pass
+No auth/payment flows present: pass
+Client-side routing rewrite configured: pass
+Secrets in repo: pass
