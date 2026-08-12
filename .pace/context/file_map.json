@@ -7,45 +7,101 @@
   },
   "modules": [
     {
+      "dir": ".",
+      "purpose": "Project configuration and static entry HTML",
+      "files": [
+        {
+          "path": "README.md",
+          "purpose": "Project overview, setup, deployment notes",
+          "key_symbols": []
+        },
+        {
+          "path": "package.json",
+          "purpose": "NPM scripts and dependencies",
+          "key_symbols": []
+        },
+        {
+          "path": "package-lock.json",
+          "purpose": "NPM lockfile",
+          "key_symbols": []
+        },
+        {
+          "path": "vite.config.ts",
+          "purpose": "Vite configuration with React plugin",
+          "key_symbols": ["defineConfig"]
+        },
+        {
+          "path": "tsconfig.json",
+          "purpose": "TypeScript compiler options",
+          "key_symbols": []
+        },
+        {
+          "path": "tsconfig.node.json",
+          "purpose": "TypeScript config for tooling",
+          "key_symbols": []
+        },
+        {
+          "path": "index.html",
+          "purpose": "HTML shell mounting React app",
+          "key_symbols": []
+        },
+        {
+          "path": "vercel.json",
+          "purpose": "Vercel SPA rewrite configuration",
+          "key_symbols": []
+        },
+        {
+          "path": "pace.config.yaml",
+          "purpose": "PACE runtime configuration",
+          "key_symbols": []
+        },
+        {
+          "path": ".gitignore",
+          "purpose": "Git ignore rules",
+          "key_symbols": []
+        }
+      ]
+    },
+    {
       "dir": "src",
-      "purpose": "SPA entry, routes, and global styles",
+      "purpose": "React application source",
       "files": [
         {
           "path": "src/main.tsx",
-          "purpose": "Bootstraps React app with BrowserRouter",
+          "purpose": "React root bootstrap with BrowserRouter",
           "key_symbols": ["createRoot"]
         },
         {
           "path": "src/App.tsx",
-          "purpose": "Defines layout and React Router routes",
+          "purpose": "App layout and route definitions",
           "key_symbols": ["App"]
         },
         {
           "path": "src/index.css",
-          "purpose": "Global styles, layout, and component styling",
+          "purpose": "Global styles and layout",
           "key_symbols": []
         },
         {
           "path": "src/vite-env.d.ts",
-          "purpose": "Vite TypeScript environment declarations",
+          "purpose": "Vite type declarations",
           "key_symbols": []
         }
       ]
     },
     {
       "dir": "src/data",
-      "purpose": "Static movie and seating data",
+      "purpose": "Demo movies and seating constants",
       "files": [
         {
           "path": "src/data/movies.ts",
-          "purpose": "Movie list, showtimes, seat layout constants",
+          "purpose": "Movie list, showtimes, seat constants, pricing",
           "key_symbols": ["MOVIES", "ROWS", "SEATS_PER_ROW", "TICKET_PRICE", "TAKEN_SEATS"]
         }
       ]
     },
     {
       "dir": "src/lib",
-      "purpose": "Local storage utilities",
+      "purpose": "Client-side booking persistence",
       "files": [
         {
           "path": "src/lib/bookings.ts",
@@ -56,73 +112,27 @@
     },
     {
       "dir": "src/pages",
-      "purpose": "Route-level pages",
+      "purpose": "Route-level React pages",
       "files": [
         {
           "path": "src/pages/HomePage.tsx",
-          "purpose": "Now showing grid and hero content",
+          "purpose": "Now showing grid and hero",
           "key_symbols": ["HomePage"]
         },
         {
           "path": "src/pages/MoviePage.tsx",
-          "purpose": "Movie detail, showtimes, seat selection, booking confirm",
-          "key_symbols": ["MoviePage", "toggleSeat", "confirmBooking"]
+          "purpose": "Movie detail, showtime selection, seat booking",
+          "key_symbols": ["MoviePage"]
         },
         {
           "path": "src/pages/ConfirmationPage.tsx",
-          "purpose": "Booking confirmation view",
+          "purpose": "Booking confirmation display",
           "key_symbols": ["ConfirmationPage"]
         },
         {
           "path": "src/pages/BookingsPage.tsx",
-          "purpose": "List and clear saved bookings",
-          "key_symbols": ["BookingsPage", "handleClear"]
-        }
-      ]
-    },
-    {
-      "dir": ".",
-      "purpose": "Project configuration",
-      "files": [
-        {
-          "path": "package.json",
-          "purpose": "NPM scripts and dependencies",
-          "key_symbols": []
-        },
-        {
-          "path": "vite.config.ts",
-          "purpose": "Vite configuration with React plugin",
-          "key_symbols": ["defineConfig"]
-        },
-        {
-          "path": "tsconfig.json",
-          "purpose": "TypeScript compiler options for app",
-          "key_symbols": []
-        },
-        {
-          "path": "tsconfig.node.json",
-          "purpose": "TypeScript config for Vite config",
-          "key_symbols": []
-        },
-        {
-          "path": "index.html",
-          "purpose": "HTML entry with root div and font imports",
-          "key_symbols": []
-        },
-        {
-          "path": "vercel.json",
-          "purpose": "Vercel rewrite rules for SPA routing",
-          "key_symbols": []
-        },
-        {
-          "path": "pace.config.yaml",
-          "purpose": "PACE config (require_tests false)",
-          "key_symbols": []
-        },
-        {
-          "path": "README.md",
-          "purpose": "Project overview and usage",
-          "key_symbols": []
+          "purpose": "List and clear stored bookings",
+          "key_symbols": ["BookingsPage"]
         }
       ]
     }
