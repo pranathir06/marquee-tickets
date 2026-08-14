@@ -5,6 +5,7 @@ import {
   ROWS,
   SEATS_PER_ROW,
   TAKEN_SEATS,
+  THEATER_LOCATIONS,
   TICKET_PRICE,
 } from "../data/movies";
 import { saveBooking, type Booking } from "../lib/bookings";
@@ -17,6 +18,7 @@ export default function MoviePage() {
   const [showtimeId, setShowtimeId] = useState<string | null>(
     movie?.showtimes[0]?.id ?? null,
   );
+  const [theater, setTheater] = useState<string>(THEATER_LOCATIONS[0]);
   const [selected, setSelected] = useState<string[]>([]);
 
   const showtime = useMemo(
@@ -55,6 +57,7 @@ export default function MoviePage() {
       showtimeId: showtime.id,
       time: showtime.time,
       screen: showtime.screen,
+      theater,
       seats: selected,
       total: selected.length * TICKET_PRICE,
       createdAt: new Date().toISOString(),
@@ -89,6 +92,21 @@ export default function MoviePage() {
             <span className="chip">{movie.runtime} min</span>
           </div>
           <p className="synopsis">{movie.synopsis}</p>
+
+          <h3 className="subhead">Preferred theater</h3>
+          <div className="showtime-list">
+            {THEATER_LOCATIONS.map((location) => (
+              <button
+                key={location}
+                type="button"
+                className={`showtime-btn${theater === location ? " selected" : ""}`}
+                onClick={() => setTheater(location)}
+              >
+                <strong>{location}</strong>
+                <span>Available today</span>
+              </button>
+            ))}
+          </div>
 
           <h3 className="subhead">Showtimes</h3>
           <div className="showtime-list">

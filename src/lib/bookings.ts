@@ -5,6 +5,7 @@ export type Booking = {
   showtimeId: string;
   time: string;
   screen: string;
+  theater: string;
   seats: string[];
   total: number;
   createdAt: string;
