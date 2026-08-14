@@ -118,6 +118,7 @@ export const MOVIES: Movie[] = [
 export const ROWS = ["A", "B", "C", "D", "E", "F"];
 export const SEATS_PER_ROW = 10;
 export const TICKET_PRICE = 12.5;
+export const THEATER_LOCATIONS = ["Downtown", "Uptown", "Harbor Point"];
 
 /** Seats that appear already taken (demo data). */
 export const TAKEN_SEATS = new Set([
