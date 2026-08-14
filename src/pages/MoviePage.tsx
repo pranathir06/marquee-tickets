@@ -93,6 +93,21 @@ export default function MoviePage() {
           </div>
           <p className="synopsis">{movie.synopsis}</p>
 
+          <h3 className="subhead">Preferred theater</h3>
+          <div className="showtime-list">
+            {THEATER_LOCATIONS.map((location) => (
+              <button
+                key={location}
+                type="button"
+                className={`showtime-btn${theater === location ? " selected" : ""}`}
+                onClick={() => setTheater(location)}
+              >
+                <strong>{location}</strong>
+                <span>Available today</span>
+              </button>
+            ))}
+          </div>
+
           <h3 className="subhead">Showtimes</h3>
           <div className="showtime-list">
             {movie.showtimes.map((st) => (
