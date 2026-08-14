@@ -18,6 +18,7 @@ export default function MoviePage() {
   const [showtimeId, setShowtimeId] = useState<string | null>(
     movie?.showtimes[0]?.id ?? null,
   );
+  const [theater, setTheater] = useState<string>(THEATER_LOCATIONS[0]);
   const [selected, setSelected] = useState<string[]>([]);
 
   const showtime = useMemo(
