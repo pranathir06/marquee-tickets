@@ -1,31 +1,30 @@
 ## Tech Stack
-- TypeScript 5
+- TypeScript 5.7
 - React 19
 - react-router-dom 7
 - Vite 6
-- Global CSS (src/index.css)
-- Browser localStorage
+- npm (package manager)
+- Vercel (deployment config via vercel.json)
 
 ## Project Structure
-- src/main.tsx: React root, BrowserRouter mount
-- src/App.tsx: App routes (/ , /movie/:movieId, /confirmation/:bookingId, /bookings)
-- src/pages/: Route-level pages (MoviePage, ConfirmationPage, BookingsPage)
-- src/data/movies.ts: Movie/showtime/seat constants
-- src/lib/bookings.ts: localStorage helpers (key "marquee-bookings")
-- src/index.css: Global styles
+- src/main.tsx — SPA entry, renders app into #root
+- src/App.tsx — route definitions for /, /movie/:movieId, /confirmation/:bookingId, /bookings
+- src/pages/ — route-level screens
+- src/data/movies.ts — static Movie/Showtime data and seat layouts
+- src/lib/bookings.ts — localStorage helpers (load/save/clear) for "marquee-bookings"
+- src/ — global styles and shared UI
 
 ## How to Run Tests
-N/A
+none
 
 ## Conventions
-- Use function components with default exports.
-- Keep data constants in src/data/movies.ts.
-- Use React hooks for component state.
-- Style via class-based global CSS (no CSS-in-JS).
-- Preserve localStorage key "marquee-bookings" and Booking shape.
+- Use strict TypeScript; avoid unused locals/params.
+- Write React components as functional components.
+- Access localStorage only through loadBookings/saveBooking/clearBookings in src/lib/bookings.ts.
+- Keep routing client-side with react-router-dom routes defined in App.tsx.
 
 ## What NOT to Do
-- Do not add backend APIs, auth, or payment flows.
-- Do not change SPA routing behavior; keep routes client-side.
-- Do not rename or migrate the localStorage key "marquee-bookings".
-- Do not introduce a test runner or test files unless requested.
+- Do not add backend calls or server-side persistence.
+- Do not store or transmit payment or sensitive user data.
+- Do not bypass localStorage helpers for bookings.
+- Do not introduce real-time seat inventory or external state sync.
