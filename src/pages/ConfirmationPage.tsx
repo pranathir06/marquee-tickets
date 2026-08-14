@@ -35,6 +35,10 @@ export default function ConfirmationPage() {
           <strong>{booking.screen}</strong>
         </div>
         <div className="ticket-row">
+          <span>Theater</span>
+          <strong>{booking.theater}</strong>
+        </div>
+        <div className="ticket-row">
           <span>Seats</span>
           <strong>{booking.seats.join(", ")}</strong>
         </div>
