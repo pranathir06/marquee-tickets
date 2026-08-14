@@ -29,7 +29,7 @@ export default function BookingsPage() {
                 <div>
                   <h3>{b.movieTitle}</h3>
                   <p>
-                    {b.time} · {b.screen} · Seats {b.seats.join(", ")}
+                    {b.time} · {b.screen} · {b.theater} · Seats {b.seats.join(", ")}
                   </p>
                 </div>
                 <div className="price">${b.total.toFixed(2)}</div>
