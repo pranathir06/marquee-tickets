@@ -5,6 +5,7 @@ import {
   ROWS,
   SEATS_PER_ROW,
   TAKEN_SEATS,
+  THEATER_LOCATIONS,
   TICKET_PRICE,
 } from "../data/movies";
 import { saveBooking, type Booking } from "../lib/bookings";
