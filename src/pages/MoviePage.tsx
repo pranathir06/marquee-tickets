@@ -57,6 +57,7 @@ export default function MoviePage() {
       showtimeId: showtime.id,
       time: showtime.time,
       screen: showtime.screen,
+      theater,
       seats: selected,
       total: selected.length * TICKET_PRICE,
       createdAt: new Date().toISOString(),
