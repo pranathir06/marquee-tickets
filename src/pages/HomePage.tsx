@@ -31,10 +31,27 @@ export default function HomePage() {
 
       <div className="section-head">
         <h2>Now showing</h2>
+        <div className="genre-filter">
+          <label htmlFor="genre-filter" className="genre-filter-label">
+            Genre
+          </label>
+          <select
+            id="genre-filter"
+            name="genre"
+            value={selectedGenre}
+            onChange={(event) => setSelectedGenre(event.target.value)}
+          >
+            {genres.map((genre) => (
+              <option key={genre} value={genre}>
+                {genre}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div className="movie-grid">
-        {MOVIES.map((movie) => (
+        {visibleMovies.map((movie) => (
           <Link key={movie.id} to={`/movie/${movie.id}`} className="movie-card">
             <div
               className="poster"
