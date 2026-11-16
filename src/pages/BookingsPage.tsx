@@ -10,6 +10,11 @@ export default function BookingsPage() {
     setBookings([]);
   }
 
+  function handleCancel(bookingId: string) {
+    removeBooking(bookingId);
+    setBookings((prev) => prev.filter((booking) => booking.id !== bookingId));
+  }
+
   return (
     <div className="shell page">
       <h1>My tickets</h1>
