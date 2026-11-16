@@ -24,6 +24,16 @@ export default function MoviePage() {
     [movie, showtimeId],
   );
 
+  const validSeatIds = useMemo(() => {
+    const seats: string[] = [];
+    ROWS.forEach((row) => {
+      for (let i = 1; i <= SEATS_PER_ROW; i += 1) {
+        seats.push(`${row}${i}`);
+      }
+    });
+    return new Set(seats);
+  }, []);
+
   if (!movie) {
     return (
       <div className="shell page">
@@ -35,16 +45,6 @@ export default function MoviePage() {
       </div>
     );
   }
-
-  const validSeatIds = useMemo(() => {
-    const seats: string[] = [];
-    ROWS.forEach((row) => {
-      for (let i = 1; i <= SEATS_PER_ROW; i += 1) {
-        seats.push(`${row}${i}`);
-      }
-    });
-    return new Set(seats);
-  }, []);
 
   function toggleSeat(seatId: string) {
     if (!validSeatIds.has(seatId) || TAKEN_SEATS.has(seatId)) return;
