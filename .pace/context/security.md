@@ -1,20 +1,23 @@
 ## Sensitive Data
 | Data | Where Stored | Protection |
 |---|---|---|
-| Booking records (movie, seats, totals) | Browser localStorage key "marquee-bookings" | No encryption; browser storage only |
+| Bookings (movie, time, seats, total) | Browser localStorage (key: marquee-bookings) | No encryption; browser storage only |
+| Seat selection state | In-memory React state (MoviePage.tsx) | Ephemeral (lost on refresh) |
 
 ## Trust Boundaries
 | Caller | Callee | Auth Method |
 |---|---|---|
-| Browser UI | localStorage | Same-origin browser access |
+| Browser user | React SPA routes (BrowserRouter) | None (public UI) |
+| React app | localStorage API | Browser origin sandbox |
 
 ## Security Requirements
-- No server-side storage or network transmission of booking data
-- Client-only routing must not expose secrets (none in repo)
-- Keep demo data static; no external write endpoints
+- No server-side storage or network calls for bookings
+- Bookings must remain in localStorage only (README.md constraint)
+- Client-side routing must render via index.html rewrite (vercel.json)
 
 ## Security Checklist
-LocalStorage used for bookings only: pass
-No backend/API endpoints present: pass
-No auth/PII handling in codebase: pass
-Secrets in repo: fail (not detected but not scanned by tool)
+Local storage only: pass
+No backend/API endpoints: pass
+Auth required: fail
+Payment handling: fail
+Secrets in repo: pass
