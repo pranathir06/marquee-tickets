@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { clearBookings, loadBookings } from "../lib/bookings";
+import { clearBookings, loadBookings, removeBooking } from "../lib/bookings";
 import { useState } from "react";
 
 export default function BookingsPage() {
