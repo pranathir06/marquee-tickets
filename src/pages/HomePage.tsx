@@ -1,7 +1,23 @@
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { MOVIES } from "../data/movies";
 
+const ALL_GENRES_LABEL = "All genres";
+
 export default function HomePage() {
+  const genres = useMemo(
+    () => [ALL_GENRES_LABEL, ...new Set(MOVIES.map((movie) => movie.genre))],
+    [],
+  );
+  const [selectedGenre, setSelectedGenre] = useState(ALL_GENRES_LABEL);
+
+  const visibleMovies = useMemo(() => {
+    if (selectedGenre === ALL_GENRES_LABEL) {
+      return MOVIES;
+    }
+    return MOVIES.filter((movie) => movie.genre === selectedGenre);
+  }, [selectedGenre]);
+
   return (
     <div className="shell">
       <section className="hero">
