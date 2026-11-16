@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { clearBookings, loadBookings } from "../lib/bookings";
+import { clearBookings, loadBookings, removeBooking } from "../lib/bookings";
 import { useState } from "react";
 
 export default function BookingsPage() {
@@ -8,6 +8,11 @@ export default function BookingsPage() {
   function handleClear() {
     clearBookings();
     setBookings([]);
+  }
+
+  function handleCancel(bookingId: string) {
+    removeBooking(bookingId);
+    setBookings((prev) => prev.filter((booking) => booking.id !== bookingId));
   }
 
   return (
@@ -32,7 +37,16 @@ export default function BookingsPage() {
                     {b.time} · {b.screen} · Seats {b.seats.join(", ")}
                   </p>
                 </div>
-                <div className="price">${b.total.toFixed(2)}</div>
+                <div className="booking-meta">
+                  <div className="price">${b.total.toFixed(2)}</div>
+                  <button
+                    type="button"
+                    className="btn btn-ghost"
+                    onClick={() => handleCancel(b.id)}
+                  >
+                    Cancel booking
+                  </button>
+                </div>
               </div>
             ))}
           </div>

@@ -30,3 +30,9 @@ export function saveBooking(booking: Booking): void {
 export function clearBookings(): void {
   localStorage.removeItem(STORAGE_KEY);
 }
+
+export function removeBooking(bookingId: string): void {
+  const existing = loadBookings();
+  const remaining = existing.filter((booking) => booking.id !== bookingId);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(remaining));
+}
