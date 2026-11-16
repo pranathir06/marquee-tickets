@@ -23,6 +23,8 @@ export default function MoviePage() {
     () => movie?.showtimes.find((s) => s.id === showtimeId) ?? null,
     [movie, showtimeId],
   );
+  const totalSeats = ROWS.length * SEATS_PER_ROW;
+  const isSoldOut = TAKEN_SEATS.size >= totalSeats;
 
   if (!movie) {
     return (
