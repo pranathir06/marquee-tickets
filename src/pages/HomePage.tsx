@@ -22,6 +22,42 @@ export default function HomePage() {
         </p>
       </section>
 
+      {recentlyViewed.length > 0 && (
+        <section className="recently-viewed">
+          <div className="section-head">
+            <h2>Recently viewed</h2>
+            <Link to="/" className="section-link">
+              Browse all
+            </Link>
+          </div>
+          <div className="recent-grid">
+            {recentlyViewed.map((movie) => (
+              <Link
+                key={movie.id}
+                to={`/movie/${movie.id}`}
+                className="recent-card"
+              >
+                <div
+                  className="poster"
+                  style={{ background: movie.posterGradient }}
+                >
+                  <h3 className="poster-title">{movie.title}</h3>
+                  <p className="poster-meta">
+                    {movie.genre} · {movie.runtime} min
+                  </p>
+                </div>
+                <div className="movie-card-meta">
+                  <strong>{movie.title}</strong>
+                  <span>
+                    {movie.rating} · from {movie.showtimes[0]?.time}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
       <div className="section-head">
         <h2>Now showing</h2>
       </div>
