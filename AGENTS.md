@@ -7,27 +7,26 @@
 - Browser localStorage (no backend)
 
 ## Project Structure
-- src/main.tsx: app bootstrap
-- src/App.tsx: route definitions (/, /movie/:movieId, /confirmation/:bookingId, /bookings)
-- src/pages: route-level pages
-- src/data/movies.ts: static MOVIES/ROWS/TAKEN_SEATS/TICKET_PRICE
-- src/lib/bookings.ts: localStorage helpers (load/save/clear)
-- src/index.css: global styling
-- vercel.json: client-side routing rewrites
+- src/main.tsx: bootstraps React app
+- src/App.tsx: route definitions
+- src/pages/: route-level page components (default exports)
+- src/data/movies.ts: static movie/showtime data + pricing
+- src/lib/bookings.ts: localStorage helpers (key: marquee-bookings)
+- src/index.css: global styles
+- vercel.json/vite.config/tsconfig: build/config
 
 ## How to Run Tests
 N/A
 
 ## Conventions
-- Use function components with React hooks (useState/useMemo/useParams/useNavigate).
-- Keep data static in src/data/movies.ts; no dynamic fetching.
-- Use named exports for helper utilities.
-- Persist bookings only via src/lib/bookings.ts (key: marquee-bookings).
-- Follow existing route patterns and params in App.tsx.
+- Use function components + hooks (useState/useMemo/useParams/useNavigate).
+- Keep data static in src/data/movies.ts; no fetching.
+- Persist bookings only through src/lib/bookings.ts.
+- Use named exports for helpers, default exports for pages.
+- Follow existing routes: /, /movie/:movieId, /confirmation/:bookingId, /bookings.
 
 ## What NOT to Do
-- Don’t add backend APIs, network calls, or server storage.
-- Don’t introduce payments, auth, or sensitive personal data.
-- Don’t modify booking persistence to anything other than localStorage.
-- Don’t add real-time seat inventory or external data sources.
-- Don’t change fixed ticket pricing behavior (TICKET_PRICE constant).
+- Do not add backend APIs, network calls, or databases.
+- Do not add payments, auth, or user accounts.
+- Do not store booking data outside localStorage or change storage key.
+- Do not introduce dynamic pricing; keep TICKET_PRICE fixed.
