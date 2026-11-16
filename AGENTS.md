@@ -4,29 +4,30 @@
 - React Router DOM 7
 - Vite 6
 - CSS (src/index.css)
-- Browser localStorage (no backend)
+- Browser localStorage (key: "marquee-bookings")
 
 ## Project Structure
-- src/main.tsx: React entry point
-- src/App.tsx: Router + top-level layout
-- src/pages/: Route-level pages (home, movie, confirmation, bookings)
-- src/lib/: localStorage booking helpers/types
-- src/data/: demo movie/showtime/seat constants
-- src/index.css: global styles
-- vercel.json: SPA rewrites for Vercel
+- index.html → app entry
+- src/main.tsx → mounts <App />
+- src/App.tsx → route definitions
+- src/pages/ → route-level pages (default export components)
+- src/lib/bookings.ts → booking types + localStorage helpers
+- src/data/movies.ts → MOVIES, seat/pricing constants
+- vercel.json → Vercel rewrites
 
 ## How to Run Tests
-n/a
+- n/a
 
 ## Conventions
-- Use function components (default export per page).
-- Prefer React hooks for state (useState/useMemo).
-- Keep types in TypeScript (Booking, Movie, Showtime) and respect strict TS settings.
-- Persist bookings only via localStorage key "marquee-bookings".
-- Routes must match: /, /movie/:movieId, /confirmation/:bookingId, /bookings.
+- Use function components; each page in src/pages must default export.
+- Prefer React hooks (useState/useMemo) over class components.
+- Keep strict TypeScript (no unused locals/params).
+- Persist bookings only in localStorage key "marquee-bookings".
+- Routes must remain: /, /movie/:movieId, /confirmation/:bookingId, /bookings.
 
 ## What NOT to Do
-- Do not add backend APIs, payments, or server-side logic.
-- Do not transmit booking data off-device or add external storage.
-- Do not introduce environment variables or secrets (none exist).
-- Do not loosen TypeScript strictness or ignore unused params/locals.
+- Do not add backend APIs, servers, or database integrations.
+- Do not implement payments, accounts, or checkout flows.
+- Do not store/transmit booking data off-device or use external storage.
+- Do not introduce env vars/secrets or new configuration requirements.
+- Do not change or remove the fixed route paths.
