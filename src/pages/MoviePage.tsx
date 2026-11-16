@@ -48,8 +48,7 @@ export default function MoviePage() {
   function confirmBooking() {
     if (!movie || !showtime || selected.length === 0) return;
 
-    const booking: Booking = {
-      id: `mq-${Date.now()}`,
+    const booking: Omit<Booking, "id"> = {
       movieId: movie.id,
       movieTitle: movie.title,
       showtimeId: showtime.id,
@@ -60,8 +59,8 @@ export default function MoviePage() {
       createdAt: new Date().toISOString(),
     };
 
-    saveBooking(booking);
-    navigate(`/confirmation/${booking.id}`);
+    const saved = saveBooking(booking);
+    navigate(`/confirmation/${saved.id}`);
   }
 
   const total = selected.length * TICKET_PRICE;
