@@ -25,6 +25,12 @@ export default function MoviePage() {
     [movie, showtimeId],
   );
 
+  useEffect(() => {
+    if (movie) {
+      saveRecentlyViewed(movie.id);
+    }
+  }, [movie]);
+
   if (!movie) {
     return (
       <div className="shell page">
