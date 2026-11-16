@@ -3,28 +3,29 @@
 - React 19
 - react-router-dom 7
 - Vite 6
-- npm (package manager)
-- Vercel (deployment config via vercel.json)
+- CSS (src/index.css)
+- localStorage (browser)
 
 ## Project Structure
-- src/main.tsx — SPA entry, renders app into #root
-- src/App.tsx — route definitions for /, /movie/:movieId, /confirmation/:bookingId, /bookings
-- src/pages/ — route-level screens
-- src/data/movies.ts — static Movie/Showtime data and seat layouts
-- src/lib/bookings.ts — localStorage helpers (load/save/clear) for "marquee-bookings"
-- src/ — global styles and shared UI
+- src/main.tsx: mounts App into #root
+- src/App.tsx: BrowserRouter and route definitions
+- src/pages/: route-level pages (Home/Movie/Confirmation/Bookings)
+- src/data/movies.ts: demo movies, showtimes, TICKET_PRICE
+- src/lib/bookings.ts: localStorage helpers (marquee-bookings)
+- src/index.css: global styles
+- public/index.html: app shell
 
 ## How to Run Tests
-none
+N/A
 
 ## Conventions
-- Use strict TypeScript; avoid unused locals/params.
-- Write React components as functional components.
-- Access localStorage only through loadBookings/saveBooking/clearBookings in src/lib/bookings.ts.
-- Keep routing client-side with react-router-dom routes defined in App.tsx.
+- Use function components with hooks (useState/useMemo/useParams/useNavigate).
+- Keep data static; read from src/data/movies.ts only.
+- Use named exports for helpers (e.g., loadBookings/saveBooking/clearBookings).
+- Persist bookings only via src/lib/bookings.ts and localStorage key "marquee-bookings".
 
 ## What NOT to Do
-- Do not add backend calls or server-side persistence.
-- Do not store or transmit payment or sensitive user data.
-- Do not bypass localStorage helpers for bookings.
-- Do not introduce real-time seat inventory or external state sync.
+- Do not add backend APIs, network calls, or auth flows.
+- Do not store payment or sensitive data.
+- Do not introduce server-side storage or databases.
+- Do not change routes outside the defined paths without updating App.tsx.
