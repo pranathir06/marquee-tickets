@@ -1,7 +1,16 @@
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { MOVIES } from "../data/movies";
+import { MOVIES, type Movie } from "../data/movies";
+import { loadRecentlyViewed } from "../lib/recentlyViewed";
 
 export default function HomePage() {
+  const recentlyViewed = useMemo(() => {
+    const ids = loadRecentlyViewed();
+    return ids
+      .map((id) => MOVIES.find((movie) => movie.id === id))
+      .filter((movie): movie is Movie => Boolean(movie));
+  }, []);
+
   return (
     <div className="shell">
       <section className="hero">
