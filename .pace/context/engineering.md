@@ -2,57 +2,57 @@
 language: typescript
 package_manager: npm
 test_runner: none
-test_command: none
-test_file_pattern: none
+test_command: "N/A"
+test_file_pattern: "N/A"
 require_tests: false
 ---
+
 ## Module Map
 | Directory | Language | Purpose |
 |---|---|---|
-| src/ | TypeScript/TSX | React SPA source code |
-| src/pages/ | TypeScript/TSX | Route-level page components |
-| src/data/ | TypeScript | Static movie, showtime, seat data |
-| src/lib/ | TypeScript | localStorage booking utilities |
-| src/index.css | CSS | Global styling |
+| src | TypeScript/React | UI components, routing, and state for booking flow |
+| src/data | TypeScript | Movie, showtime, seat demo data |
+| src/lib | TypeScript | localStorage booking helpers |
+| src/pages | TypeScript/React | Page-level routes (home, movie, confirmation, bookings) |
 
 ## Tech Stack
 | Component | Technology |
 |---|---|
 | UI framework | React 19 |
-| Router | React Router DOM 7 |
-| Build tool | Vite 6 |
 | Language | TypeScript 5.7 |
-| Hosting | Vercel (via vercel.json) |
+| Router | React Router DOM 7.1 |
+| Build tool | Vite 6 |
+| Styling | CSS (src/index.css) |
+| Storage | Browser localStorage |
+| Hosting | Vercel (vercel.json) |
 
 ## System Architecture
-| Flow | Details |
+| Flow | Components |
 |---|---|
-| Entry | index.html loads /src/main.tsx |
-| App shell | App.tsx renders header/footer and route outlet |
-| Routing | BrowserRouter with Routes: /, /movie/:movieId, /confirmation/:bookingId, /bookings |
-| Data | Static MOVIES + seat constants from src/data/movies.ts |
-| Persistence | Bookings stored in browser localStorage key "marquee-bookings" |
+| App bootstrap | src/main.tsx → BrowserRouter → src/App.tsx |
+| Routing | App.tsx Routes → pages/*Page.tsx |
+| Data | pages use MOVIES/seat data from src/data/movies.ts |
+| Persistence | pages use load/save/clear in src/lib/bookings.ts (localStorage) |
 
 ## Key Interfaces & Contracts
-| Interface | Location | Contract |
+| Interface | Location | Fields |
 |---|---|---|
-| Booking type | src/lib/bookings.ts | {id,movieId,movieTitle,showtimeId,time,screen,seats,total,createdAt} |
-| Movies data | src/data/movies.ts | MOVIES: Movie[] with showtimes; ROWS, SEATS_PER_ROW, TICKET_PRICE, TAKEN_SEATS |
+| Movie | src/data/movies.ts | id, title, genre, runtime, rating, synopsis, posterGradient, accent, showtimes[] |
+| Showtime | src/data/movies.ts | id, time, screen |
+| Booking | src/lib/bookings.ts | id, movieId, movieTitle, showtimeId, time, screen, seats[], total, createdAt |
 | Routes | src/App.tsx | /, /movie/:movieId, /confirmation/:bookingId, /bookings |
-| Vercel rewrites | vercel.json | "/*" → /index.html |
 
 ## Coding Conventions
-| Area | Convention |
+| Convention | Evidence |
 |---|---|
-| Components | Function components with default export |
-| State | React useState/useMemo hooks in pages |
-| Styling | Global CSS in src/index.css |
-| Error handling | Graceful fallbacks for missing movie/booking |
-| Type safety | TypeScript strict true (tsconfig.json) |
+| Functional components | pages/*Page.tsx export default function |
+| Hooks for state | useState/useMemo/useParams/useNavigate in MoviePage.tsx |
+| Local storage access wrapped | loadBookings/saveBooking/clearBookings in src/lib/bookings.ts |
+| Strict TS config | tsconfig.json strict: true |
 
 ## Test Patterns
-| Item | Status |
+| Aspect | Details |
 |---|---|
-| Test framework | None detected |
-| Test scripts | None in package.json |
-| Requirement | require_tests=false |
+| Test runner | None configured (pace.config.yaml require_tests: false) |
+| Test location | N/A |
+| Test command | N/A |
