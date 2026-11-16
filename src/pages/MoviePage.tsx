@@ -135,7 +135,7 @@ export default function MoviePage() {
                         key={seatId}
                         type="button"
                         className={`seat${isTaken ? " taken" : ""}${isSelected ? " selected" : ""}`}
-                        disabled={isTaken}
+                        disabled={isTaken || isSoldOut}
                         aria-label={`Seat ${seatId}${isTaken ? ", taken" : isSelected ? ", selected" : ""}`}
                         aria-pressed={isSelected}
                         onClick={() => toggleSeat(seatId)}
