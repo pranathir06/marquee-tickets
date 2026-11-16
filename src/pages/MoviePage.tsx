@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   MOVIES,
@@ -8,6 +8,7 @@ import {
   TICKET_PRICE,
 } from "../data/movies";
 import { saveBooking, type Booking } from "../lib/bookings";
+import { saveRecentlyViewed } from "../lib/recentlyViewed";
 
 export default function MoviePage() {
   const { movieId } = useParams();
