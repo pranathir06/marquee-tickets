@@ -6,7 +6,7 @@
 ## Environment Variables
 | Name | Required | Purpose |
 |---|---|---|
-| None | No | N/A |
+| None | No | Frontend-only demo |
 
 ## Local Dev
 1. npm install
@@ -15,4 +15,4 @@
 4. npm run preview
 
 ## Deployment
-Deploy: Vercel (Vite preset, output dist, vercel.json rewrite)
+Deploy: Vercel (Vite preset; output dist; vercel.json rewrites)
