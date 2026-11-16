@@ -1,7 +1,23 @@
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { MOVIES } from "../data/movies";
 
+const ALL_GENRES_LABEL = "All genres";
+
 export default function HomePage() {
+  const genres = useMemo(
+    () => [ALL_GENRES_LABEL, ...new Set(MOVIES.map((movie) => movie.genre))],
+    [],
+  );
+  const [selectedGenre, setSelectedGenre] = useState(ALL_GENRES_LABEL);
+
+  const visibleMovies = useMemo(() => {
+    if (selectedGenre === ALL_GENRES_LABEL) {
+      return MOVIES;
+    }
+    return MOVIES.filter((movie) => movie.genre === selectedGenre);
+  }, [selectedGenre]);
+
   return (
     <div className="shell">
       <section className="hero">
@@ -15,10 +31,27 @@ export default function HomePage() {
 
       <div className="section-head">
         <h2>Now showing</h2>
+        <div className="genre-filter">
+          <label htmlFor="genre-filter" className="genre-filter-label">
+            Genre
+          </label>
+          <select
+            id="genre-filter"
+            name="genre"
+            value={selectedGenre}
+            onChange={(event) => setSelectedGenre(event.target.value)}
+          >
+            {genres.map((genre) => (
+              <option key={genre} value={genre}>
+                {genre}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div className="movie-grid">
-        {MOVIES.map((movie) => (
+        {visibleMovies.map((movie) => (
           <Link key={movie.id} to={`/movie/${movie.id}`} className="movie-card">
             <div
               className="poster"
