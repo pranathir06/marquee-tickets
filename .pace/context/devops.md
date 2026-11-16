@@ -1,12 +1,12 @@
 ## CI/CD
 | Trigger | Workflow | Jobs |
 |---|---|---|
-| None | None | None |
+| N/A | .github/workflows not present | N/A |
 
 ## Environment Variables
 | Name | Required | Purpose |
 |---|---|---|
-| None | No | Frontend-only demo |
+| N/A | N/A | No env vars defined |
 
 ## Local Dev
 1. npm install
@@ -15,4 +15,4 @@
 4. npm run preview
 
 ## Deployment
-Deploy: Vercel (Vite preset; output dist; vercel.json rewrites)
+Deploy: Vercel (vite build, output dist, vercel.json rewrites)
