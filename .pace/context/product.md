@@ -1,29 +1,30 @@
 ## Vision
-Purpose: Demo movie ticket booking flow with local-only storage
-Users: Moviegoers evaluating seat selection and booking summary UX
+Purpose: Demo movie ticket booking UI with local-only bookings
+Users: Moviegoers browsing showtimes and reserving seats in-browser
 
 ## Target Personas
 | Persona | Pain Point | Goal |
 |---|---|---|
-| Casual moviegoer | Needs quick showtime and seat selection | Book seats in a few clicks |
-| Demo reviewer | Wants to see full booking flow without payment | Validate UX end-to-end locally |
+| Casual moviegoer | Wants quick view of what’s playing | Browse films and showtimes fast |
+| Frequent visitor | Needs to track booked tickets | View saved bookings in browser |
+| Seat planner | Needs to see availability | Pick seats from a map |
 
 ## MVP Scope
 In Scope:
-- Browse now showing movies with posters
-- View showtimes and select seats
-- Confirm booking summary
-- View saved tickets in browser
+- Browse six sample films (posters, genres, runtimes)
+- Select showtime and seats
+- Confirm booking and view summary
+- Persist bookings in localStorage
 Out of Scope:
-- Payments
-- User accounts or authentication
+- Payments or checkout
 - Backend APIs or server storage
-- Real-time seat availability
+- User accounts or authentication
+- Real-time seat inventory
 
 ## Strategic Constraints
 | Constraint | Reason |
 |---|---|
-| LocalStorage-only bookings | README: no backend, bookings stored in browser only |
-| Fixed ticket price | src/data/movies.ts TICKET_PRICE constant |
-| Demo data only | src/data/movies.ts sample movies/showtimes |
-| Client-side routing only | vercel.json rewrites to index.html |
+| Frontend-only demo | README.md states no backend/payment flow |
+| Local-only storage | Bookings stored in browser localStorage |
+| Fixed ticket price | TICKET_PRICE constant in data/movies.ts |
+| Client-side routing | Vercel rewrite to index.html |
