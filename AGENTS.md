@@ -1,33 +1,29 @@
 ## Tech Stack
-- TypeScript 5.7
+- TypeScript 5
 - React 19
-- React Router 7
+- react-router-dom 7
 - Vite 6
-- CSS (src/index.css)
-- Vercel static hosting
+- CSS (global styles)
+- Browser localStorage (no backend)
 
 ## Project Structure
-- src/main.tsx: app entry loaded by Vite
-- src/App.tsx: BrowserRouter + route definitions
-- src/pages/: route pages (home, movie, confirmation, bookings)
-- src/data/movies.ts: static Movie/Showtime data
+- src/App.tsx: App shell and route definitions
+- src/pages/: Route-level pages (Home/Movie/Confirmation/Bookings)
+- src/data/movies.ts: Static demo movie/showtime data + types
 - src/lib/bookings.ts: localStorage helpers for bookings
-- src/index.css: global styles
-- vercel.json: SPA rewrite config
+- src/index.css: Global styles and component classes
 
 ## How to Run Tests
 N/A
 
 ## Conventions
-- Use strict TypeScript; keep types aligned with Movie/Showtime/Booking interfaces.
-- Build pages as functional components exporting default function Component().
-- Use local component state/hooks (useState/useMemo) for UI logic.
-- Guard localStorage access with try/catch like loadBookings().
-- Keep routing client-side; use route params safely when data may be missing.
+- Use React function components and hooks (useState/useMemo/useParams/useNavigate).
+- Keep TypeScript strict typing; prefer explicit types for data/models.
+- Use named exports for data/types from src/data.
+- Persist bookings only via lib/bookings.ts using key "marquee-bookings".
 
 ## What NOT to Do
-- Do not add backend APIs, server storage, payments, or auth flows.
-- Do not introduce network calls for bookings; keep persistence in localStorage only.
-- Do not change the localStorage key ("marquee-bookings") or break existing data shape.
-- Do not crash on missing/invalid route params or missing data.
-- Do not add CI workflows or env vars unless explicitly required.
+- Do not add backend calls, APIs, or server persistence.
+- Do not introduce payments, auth, or real-time seat availability.
+- Do not modify data flow to rely on anything other than static demo data and localStorage.
+- Do not add test frameworks or CI assumptions without project approval.
