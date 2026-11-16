@@ -1,29 +1,28 @@
 ## Vision
-Purpose: Demo movie ticket booking SPA with local-only storage
-Users: Moviegoers browsing showtimes and booking seats in-browser
+Purpose: Demo movie ticket booking UX with local-only storage
+Users: Moviegoers browsing showtimes and selecting seats
 
 ## Target Personas
 | Persona | Pain Point | Goal |
 |---|---|---|
-| Casual moviegoer | Needs quick view of now playing and showtimes | Browse films and pick a time fast |
-| Returning visitor | Wants to see past bookings | View tickets saved in this browser |
+| Casual moviegoer | Unsure which films and times are available | Browse movies and showtimes quickly |
+| Repeat visitor | Wants to see prior tickets in-browser | Review bookings stored in localStorage |
 
 ## MVP Scope
 In Scope:
-- Browse now showing movies
-- View showtimes and seat map per movie
+- Browse sample movies and showtimes
 - Select seats and confirm booking
-- View confirmation details
-- View and clear bookings stored in localStorage
+- View confirmation and ticket list
+- Store bookings in browser localStorage
+
 Out of Scope:
-- Payments and checkout
-- User accounts or authentication
-- Backend data storage or APIs
+- Backend APIs or user accounts
+- Payments or refunds
 - Real-time seat availability
 
 ## Strategic Constraints
 | Constraint | Reason |
 |---|---|
-| No backend or payment flow | README.md, AGENTS.md |
-| Bookings stored only in browser localStorage | README.md, AGENTS.md |
-| SPA routing with Vercel rewrite | README.md, vercel.json |
+| Frontend-only | README: no backend or payment flow |
+| Local-only persistence | Bookings stored in browser localStorage |
+| Client-side routing | Vercel rewrite to index.html |
