@@ -758,4 +758,17 @@ img {
   .booking-item {
     grid-template-columns: 1fr;
   }
+
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .genre-filter {
+    width: 100%;
+  }
+
+  .genre-filter select {
+    width: 100%;
+  }
 }
