@@ -111,6 +111,12 @@ export default function MoviePage() {
           </div>
 
           <h3 className="subhead">Select seats</h3>
+          {isSoldOut ? (
+            <div className="sold-out-banner">
+              <h4>Sold out</h4>
+              <p>This showtime is fully booked. Choose another time.</p>
+            </div>
+          ) : null}
           <div className="seat-panel">
             <div className="screen-label">Screen</div>
             <div className="screen-bar" />
