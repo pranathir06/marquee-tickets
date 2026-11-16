@@ -1,7 +1,16 @@
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { MOVIES } from "../data/movies";
+import { MOVIES, type Movie } from "../data/movies";
+import { loadRecentlyViewed } from "../lib/recentlyViewed";
 
 export default function HomePage() {
+  const recentlyViewed = useMemo(() => {
+    const ids = loadRecentlyViewed();
+    return ids
+      .map((id) => MOVIES.find((movie) => movie.id === id))
+      .filter((movie): movie is Movie => Boolean(movie));
+  }, []);
+
   return (
     <div className="shell">
       <section className="hero">
@@ -12,6 +21,42 @@ export default function HomePage() {
           playing, choose a showtime, and claim your seats.
         </p>
       </section>
+
+      {recentlyViewed.length > 0 && (
+        <section className="recently-viewed">
+          <div className="section-head">
+            <h2>Recently viewed</h2>
+            <Link to="/" className="section-link">
+              Browse all
+            </Link>
+          </div>
+          <div className="recent-grid">
+            {recentlyViewed.map((movie) => (
+              <Link
+                key={movie.id}
+                to={`/movie/${movie.id}`}
+                className="recent-card"
+              >
+                <div
+                  className="poster"
+                  style={{ background: movie.posterGradient }}
+                >
+                  <h3 className="poster-title">{movie.title}</h3>
+                  <p className="poster-meta">
+                    {movie.genre} · {movie.runtime} min
+                  </p>
+                </div>
+                <div className="movie-card-meta">
+                  <strong>{movie.title}</strong>
+                  <span>
+                    {movie.rating} · from {movie.showtimes[0]?.time}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       <div className="section-head">
         <h2>Now showing</h2>
