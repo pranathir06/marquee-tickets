@@ -37,7 +37,16 @@ export default function BookingsPage() {
                     {b.time} · {b.screen} · Seats {b.seats.join(", ")}
                   </p>
                 </div>
-                <div className="price">${b.total.toFixed(2)}</div>
+                <div className="booking-meta">
+                  <div className="price">${b.total.toFixed(2)}</div>
+                  <button
+                    type="button"
+                    className="btn btn-ghost"
+                    onClick={() => handleCancel(b.id)}
+                  >
+                    Cancel booking
+                  </button>
+                </div>
               </div>
             ))}
           </div>
