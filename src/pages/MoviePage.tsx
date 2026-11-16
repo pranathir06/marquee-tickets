@@ -39,7 +39,7 @@ export default function MoviePage() {
   }
 
   function toggleSeat(seatId: string) {
-    if (TAKEN_SEATS.has(seatId)) return;
+    if (TAKEN_SEATS.has(seatId) || isSoldOut) return;
     setSelected((prev) =>
       prev.includes(seatId)
         ? prev.filter((s) => s !== seatId)
@@ -48,7 +48,7 @@ export default function MoviePage() {
   }
 
   function confirmBooking() {
-    if (!movie || !showtime || selected.length === 0) return;
+    if (!movie || !showtime || selected.length === 0 || isSoldOut) return;
 
     const booking: Booking = {
       id: `mq-${Date.now()}`,
