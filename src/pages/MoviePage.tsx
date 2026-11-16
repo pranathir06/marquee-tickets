@@ -109,6 +109,10 @@ export default function MoviePage() {
           </div>
 
           <h3 className="subhead">Select seats</h3>
+          <div className="seat-count">
+            <span>{selected.length} selected</span>
+            <span>{ROWS.length * SEATS_PER_ROW} seats total</span>
+          </div>
           <div className="seat-panel">
             <div className="screen-label">Screen</div>
             <div className="screen-bar" />
