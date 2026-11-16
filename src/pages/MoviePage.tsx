@@ -176,7 +176,7 @@ export default function MoviePage() {
               <button
                 type="button"
                 className="btn"
-                disabled={!showtime || selected.length === 0}
+                disabled={!showtime || selected.length === 0 || isSoldOut}
                 onClick={confirmBooking}
               >
                 Confirm tickets
