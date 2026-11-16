@@ -185,6 +185,38 @@ img {
   margin: 0;
 }
 
+.genre-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--cream-muted);
+  font-size: 0.85rem;
+}
+
+.genre-filter-label {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.65rem;
+  color: var(--cream-muted);
+}
+
+.genre-filter select {
+  appearance: none;
+  background: var(--ink-soft);
+  border: 1px solid var(--line);
+  color: var(--cream);
+  padding: 0.45rem 1.75rem 0.45rem 0.65rem;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  font-family: inherit;
+  position: relative;
+}
+
+.genre-filter select:focus {
+  outline: 1px solid var(--brass);
+  outline-offset: 2px;
+}
+
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
