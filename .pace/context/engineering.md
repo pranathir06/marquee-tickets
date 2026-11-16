@@ -2,17 +2,19 @@
 language: typescript
 package_manager: npm
 test_runner: none
-test_command: "none"
-test_file_pattern: "none"
+test_command: "N/A"
+test_file_pattern: "N/A"
 require_tests: false
 ---
 ## Module Map
 | Directory | Language | Purpose |
 |---|---|---|
-| src | TypeScript/React | SPA entry, routing, global styles |
-| src/data | TypeScript | Static movie/showtime/seat data |
-| src/lib | TypeScript | localStorage booking helpers |
-| src/pages | TypeScript/React | Route-level UI screens |
+| src/ | TypeScript | React SPA source code |
+| src/pages/ | TypeScript | Route-level pages (home, movie, confirmation, bookings) |
+| src/data/ | TypeScript | Demo data for movies/showtimes/seats |
+| src/lib/ | TypeScript | localStorage booking helpers |
+| src/index.css | CSS | Global styles and layout |
+| public (via index.html) | HTML | App shell and root mount |
 
 ## Tech Stack
 | Component | Technology |
@@ -21,33 +23,41 @@ require_tests: false
 | Routing | react-router-dom 7 |
 | Build tool | Vite 6 |
 | Language | TypeScript 5.7 |
-| Hosting config | Vercel (vercel.json rewrites) |
+| Styling | CSS (index.css) |
+| Storage | Browser localStorage |
+| Hosting target | Vercel (vercel.json) |
 
 ## System Architecture
-| Flow | Description |
+| Flow | Details |
 |---|---|
-| Browser UI | React SPA rendered from src/main.tsx into #root |
-| Routing | BrowserRouter with routes: /, /movie/:movieId, /confirmation/:bookingId, /bookings |
-| Data | Static MOVIES/seat layout from src/data/movies.ts |
-| Persistence | localStorage key "marquee-bookings" via src/lib/bookings.ts |
+| Entry | index.html → src/main.tsx mounts App into #root |
+| Routing | BrowserRouter → Routes in App.tsx |
+| Data | Static MOVIES + seat constants in src/data/movies.ts |
+| Booking storage | src/lib/bookings.ts reads/writes localStorage key "marquee-bookings" |
+| Pages | HomePage → MoviePage → ConfirmationPage; BookingsPage reads localStorage |
 
 ## Key Interfaces & Contracts
-| Interface | Location | Fields/Notes |
-|---|---|---|
-| Movie | src/data/movies.ts | id,title,genre,runtime,rating,synopsis,posterGradient,accent,showtimes[] |
-| Showtime | src/data/movies.ts | id,time,screen |
-| Booking | src/lib/bookings.ts | id,movieId,movieTitle,showtimeId,time,screen,seats[],total,createdAt |
-| Routes | src/App.tsx | /, /movie/:movieId, /confirmation/:bookingId, /bookings |
+| Interface | Definition |
+|---|---|
+| Route | / → HomePage |
+| Route | /movie/:movieId → MoviePage |
+| Route | /confirmation/:bookingId → ConfirmationPage |
+| Route | /bookings → BookingsPage |
+| Storage key | marquee-bookings (JSON array of Booking) |
+| Type | Booking { id, movieId, movieTitle, showtimeId, time, screen, seats, total, createdAt } |
+| Type | Movie { id, title, genre, runtime, rating, synopsis, posterGradient, accent, showtimes[] } |
 
 ## Coding Conventions
-| Rule | Evidence |
+| Convention | Evidence |
 |---|---|
-| Strict TS | tsconfig.json strict:true, noUnusedLocals/Parameters |
-| Functional components | All React components are function exports |
-| Local storage access | Wrapped in loadBookings/saveBooking/clearBookings |
+| Functional components | All pages use function components (HomePage, MoviePage, etc.) |
+| Hooks for state | useState/useMemo/useParams/useNavigate |
+| Named exports for helpers | loadBookings/saveBooking/clearBookings |
+| Local-only persistence | localStorage, no network requests |
 
 ## Test Patterns
-| Item | Status |
+| Item | Details |
 |---|---|
-| Test framework | None configured (no test script/deps) |
-| Test location | N/A |
+| Tests | None present |
+| Runner | N/A (no test script) |
+| Notes | pace.config.yaml sets require_tests: false |
