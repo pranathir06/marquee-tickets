@@ -1,31 +1,29 @@
 ## Vision
-Purpose: Frontend-only demo for booking cinema tickets in-browser
-Users: Moviegoers selecting showtimes and seats without payment
+Purpose: Demo movie ticket booking SPA with local-only storage
+Users: Moviegoers browsing showtimes and booking seats in-browser
 
 ## Target Personas
 | Persona | Pain Point | Goal |
 |---|---|---|
-| Casual moviegoer | Needs quick view of available films and times | Browse listings and pick a showtime |
-| Planner | Wants to preview seating availability | Select specific seats before confirming |
-| Repeat visitor | Wants to review prior selections | View saved bookings in the same browser |
+| Casual moviegoer | Needs quick view of now playing and showtimes | Browse films and pick a time fast |
+| Returning visitor | Wants to see past bookings | View tickets saved in this browser |
 
 ## MVP Scope
 In Scope:
 - Browse now showing movies
-- View movie details and showtimes
-- Select seats and confirm tickets
-- Persist bookings in browser localStorage
-- View and clear saved bookings
-
+- View showtimes and seat map per movie
+- Select seats and confirm booking
+- View confirmation details
+- View and clear bookings stored in localStorage
 Out of Scope:
-- Payments
-- User accounts or server-side storage
-- Real-time seat inventory
-- Admin or cinema management tools
+- Payments and checkout
+- User accounts or authentication
+- Backend data storage or APIs
+- Real-time seat availability
 
 ## Strategic Constraints
 | Constraint | Reason |
 |---|---|
-| No backend | README.md: “There is no backend or payment flow.” |
-| Browser-only persistence | README.md: bookings stored in localStorage |
-| Client-side routing | vercel.json rewrites to index.html for SPA |
+| No backend or payment flow | README.md, AGENTS.md |
+| Bookings stored only in browser localStorage | README.md, AGENTS.md |
+| SPA routing with Vercel rewrite | README.md, vercel.json |
