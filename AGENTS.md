@@ -1,33 +1,33 @@
 ## Tech Stack
 - TypeScript 5.7
 - React 19
-- React Router DOM 7
+- React Router 7
 - Vite 6
-- CSS (src/index.css)
-- Browser localStorage (key: "marquee-bookings")
+- Browser localStorage (client-only persistence)
+- npm
 
 ## Project Structure
-- index.html → app entry
-- src/main.tsx → mounts <App />
-- src/App.tsx → route definitions
-- src/pages/ → route-level pages (default export components)
-- src/lib/bookings.ts → booking types + localStorage helpers
-- src/data/movies.ts → MOVIES, seat/pricing constants
-- vercel.json → Vercel rewrites
+- src/main.tsx: App entry; mounts BrowserRouter
+- src/App.tsx: Route definitions (Home/Movie/Confirmation/Bookings)
+- src/pages/: Route-level React pages
+- src/data/movies.ts: Static movie/showtime/seat data + types
+- src/lib/bookings.ts: localStorage helpers (key: marquee-bookings)
+- src/index.css: Global styles
+- vercel.json: SPA rewrites for Vercel
 
 ## How to Run Tests
-- n/a
+N/A
 
 ## Conventions
-- Use function components; each page in src/pages must default export.
-- Prefer React hooks (useState/useMemo) over class components.
-- Keep strict TypeScript (no unused locals/params).
-- Persist bookings only in localStorage key "marquee-bookings".
-- Routes must remain: /, /movie/:movieId, /confirmation/:bookingId, /bookings.
+- Use function components with default export.
+- Prefer useState/useMemo in pages; keep state local.
+- Style via existing global CSS classes in src/index.css.
+- Handle “not found” cases with conditional rendering in pages.
+- Preserve localStorage key format: marquee-bookings.
 
 ## What NOT to Do
-- Do not add backend APIs, servers, or database integrations.
-- Do not implement payments, accounts, or checkout flows.
-- Do not store/transmit booking data off-device or use external storage.
-- Do not introduce env vars/secrets or new configuration requirements.
-- Do not change or remove the fixed route paths.
+- Do not add backend calls, auth, or payment processing.
+- Do not change localStorage schema/key without migration plan.
+- Do not introduce test frameworks or scripts unless requested.
+- Do not add server-side data handling or external APIs.
+- Do not deviate from client-side routing (BrowserRouter).
