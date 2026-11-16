@@ -368,6 +368,22 @@ img {
   margin: 0 0 0.85rem;
 }
 
+.seat-count {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: -0.25rem 0 0.85rem;
+  font-size: 0.85rem;
+  color: var(--cream-muted);
+}
+
+.seat-count span:first-child {
+  color: var(--cream);
+  font-weight: 600;
+}
+
 .showtime-list {
   display: flex;
   flex-wrap: wrap;
