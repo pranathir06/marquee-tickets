@@ -24,6 +24,16 @@ export default function MoviePage() {
     [movie, showtimeId],
   );
 
+  const validSeatIds = useMemo(() => {
+    const seats: string[] = [];
+    ROWS.forEach((row) => {
+      for (let i = 1; i <= SEATS_PER_ROW; i += 1) {
+        seats.push(`${row}${i}`);
+      }
+    });
+    return new Set(seats);
+  }, []);
+
   if (!movie) {
     return (
       <div className="shell page">
@@ -37,7 +47,7 @@ export default function MoviePage() {
   }
 
   function toggleSeat(seatId: string) {
-    if (TAKEN_SEATS.has(seatId)) return;
+    if (!validSeatIds.has(seatId) || TAKEN_SEATS.has(seatId)) return;
     setSelected((prev) =>
       prev.includes(seatId)
         ? prev.filter((s) => s !== seatId)
@@ -46,7 +56,17 @@ export default function MoviePage() {
   }
 
   function confirmBooking() {
-    if (!movie || !showtime || selected.length === 0) return;
+    if (!movie || !showtime) return;
+    const validatedSeats = selected.filter(
+      (seatId) => validSeatIds.has(seatId) && !TAKEN_SEATS.has(seatId),
+    );
+
+    if (validatedSeats.length === 0) {
+      if (selected.length > 0) {
+        setSelected([]);
+      }
+      return;
+    }
 
     const booking: Booking = {
       id: `mq-${Date.now()}`,
@@ -55,8 +75,8 @@ export default function MoviePage() {
       showtimeId: showtime.id,
       time: showtime.time,
       screen: showtime.screen,
-      seats: selected,
-      total: selected.length * TICKET_PRICE,
+      seats: validatedSeats,
+      total: validatedSeats.length * TICKET_PRICE,
       createdAt: new Date().toISOString(),
     };
 
