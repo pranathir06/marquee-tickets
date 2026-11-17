@@ -409,6 +409,27 @@ img {
   color: var(--cream-muted);
 }
 
+.sold-out-banner {
+  margin-bottom: 1.25rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(196, 92, 74, 0.5);
+  border-radius: var(--radius);
+  background: rgba(196, 92, 74, 0.12);
+}
+
+.sold-out-banner h4 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.sold-out-banner p {
+  margin: 0;
+  color: var(--cream-muted);
+  font-size: 0.9rem;
+}
+
 /* ——— Seats ——— */
 
 .seat-panel {

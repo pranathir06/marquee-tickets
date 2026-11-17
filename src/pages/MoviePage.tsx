@@ -23,6 +23,8 @@ export default function MoviePage() {
     () => movie?.showtimes.find((s) => s.id === showtimeId) ?? null,
     [movie, showtimeId],
   );
+  const totalSeats = ROWS.length * SEATS_PER_ROW;
+  const isSoldOut = TAKEN_SEATS.size >= totalSeats;
 
   if (!movie) {
     return (
@@ -37,7 +39,7 @@ export default function MoviePage() {
   }
 
   function toggleSeat(seatId: string) {
-    if (TAKEN_SEATS.has(seatId)) return;
+    if (TAKEN_SEATS.has(seatId) || isSoldOut) return;
     setSelected((prev) =>
       prev.includes(seatId)
         ? prev.filter((s) => s !== seatId)
@@ -46,7 +48,7 @@ export default function MoviePage() {
   }
 
   function confirmBooking() {
-    if (!movie || !showtime || selected.length === 0) return;
+    if (!movie || !showtime || selected.length === 0 || isSoldOut) return;
 
     const booking: Booking = {
       id: `mq-${Date.now()}`,
@@ -109,6 +111,12 @@ export default function MoviePage() {
           </div>
 
           <h3 className="subhead">Select seats</h3>
+          {isSoldOut ? (
+            <div className="sold-out-banner">
+              <h4>Sold out</h4>
+              <p>This showtime is fully booked. Choose another time.</p>
+            </div>
+          ) : null}
           <div className="seat-panel">
             <div className="screen-label">Screen</div>
             <div className="screen-bar" />
@@ -127,7 +135,7 @@ export default function MoviePage() {
                         key={seatId}
                         type="button"
                         className={`seat${isTaken ? " taken" : ""}${isSelected ? " selected" : ""}`}
-                        disabled={isTaken}
+                        disabled={isTaken || isSoldOut}
                         aria-label={`Seat ${seatId}${isTaken ? ", taken" : isSelected ? ", selected" : ""}`}
                         aria-pressed={isSelected}
                         onClick={() => toggleSeat(seatId)}
@@ -168,7 +176,7 @@ export default function MoviePage() {
               <button
                 type="button"
                 className="btn"
-                disabled={!showtime || selected.length === 0}
+                disabled={!showtime || selected.length === 0 || isSoldOut}
                 onClick={confirmBooking}
               >
                 Confirm tickets
